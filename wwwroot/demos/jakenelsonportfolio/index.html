@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jake Nelson Portfolio</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- ////////////////////////////////////////////////////////////////////////////////////////
+                               START SECTION 1 - THE NAVBAR SECTION  
+/////////////////////////////////////////////////////////////////////////////////////////////-->
+<nav class="navbar navbar-expand-lg navbar-dark menu shadow fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149446.png" alt="logo image">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Social</a></li>
+        
+          
+          <li class="nav-item"><a class="nav-link" href="#contact">contact</a>
+          </li>
+        </ul>
+        <button type="button" class="rounded-pill btn-rounded">
+          +1 728365413
+          <span>
+            <i class="fas fa-phone-alt"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////
+                            START SECTION 2 - THE INTRO SECTION  
+/////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<section id="home" class="intro-section">
+  <div class="container">
+    <div class="row align-items-center text-white">
+      <!-- START THE CONTENT FOR THE INTRO  -->
+      <div class="col-md-6 intros text-start">
+        <h1 class="display-2">
+          <span class="display-2--intro">Hey!, I'm Jake</span>
+          <span class="display-2--description lh-base">
+            an experienced Journalist with a demonstrated history of working in the print and broadcast media industries. 
+          </span>
+        </h1>
+        <a href="#contact">
+          <button type="button" class="rounded-pill btn-rounded">
+            Get in Touch
+            <span><i class="fas fa-arrow-right"></i></span>
+          </button>
+        </a>
+        
+      </div>
+      <!-- START THE CONTENT FOR THE VIDEO -->
+      <div class="col-md-6 intros text-end">
+        <div class="video-box">
+          <img src="https://media.licdn.com/dms/image/v2/D5603AQHYclVDEL_I1w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1693474836743?e=1741219200&v=beta&t=9kKkd7kvEWnHcUjeSYWJfSgN35xnPUYCw0RMpqr_9Zg" alt="video illutration" class="img-fluid">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <svg xmlns="" viewBox="0 0 1440 320"><path fill="#ffffff" fill-opacity="1" d="M0,160L48,176C96,192,192,224,288,208C384,192,480,128,576,133.3C672,139,768,213,864,202.7C960,192,1056,96,1152,74.7C1248,53,1344,107,1392,133.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+</section>
+
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////
+                             START SECTION 3 - THE CAMPANIES SECTION  
+////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+  <section id="campanies" class="campanies">
+    <div class="container">
+      <div class="row text-center">
+        <h4 class="fw-bold lead mb-3">I've Worked With</h4>
+        <div class="heading-line mb-5"></div>
+      </div>
+    </div>
+    <!-- START THE CAMPANIES CONTENT  -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-lg-2">
+          <div class="campanies__logo-box shadow-sm">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcFWO8oR_UETL5jgNtZ7Ti8IcisMJW8SFywA&s" alt="Campany 1 logo" title="Campany 1 Logo" class="img-fluid">
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <div class="campanies__logo-box shadow-sm">
+            <img src="data:image/png;base64,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" alt="Campany 2 logo" title="Campany 2 Logo" class="img-fluid">
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <div class="campanies__logo-box shadow-sm">
+            <img src="https://media.licdn.com/dms/image/v2/C560BAQFo_ctLsKGJbA/company-logo_200_200/company-logo_200_200/0/1630600535844?e=2147483647&v=beta&t=piGEBGiIP-h65IqjLm0BQ9fHfpZHc80sAw4tL1GexzE" alt="Campany 3 logo" title="Campany 3 Logo" class="img-fluid">
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <div class="campanies__logo-box shadow-sm">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpiPqvSh0sYsB4RfYrIvXb2hSAAKs2LtBxTQ&s" alt="Campany 4 logo" title="Campany 4 Logo" class="img-fluid">
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <div class="campanies__logo-box shadow-sm">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcFWO8oR_UETL5jgNtZ7Ti8IcisMJW8SFywA&s" alt="Campany 5 logo" title="Campany 5 Logo" class="img-fluid">
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-2">
+          <div class="campanies__logo-box shadow-sm">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcFWO8oR_UETL5jgNtZ7Ti8IcisMJW8SFywA&s" alt="Campany 6 logo" title="Campany 6 Logo" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////
+                         START SECTION 4 - THE SERVICES  
+///////////////////////////////////////////////////////////////////////////////////////////////////-->
+<section id="services" class="services">
+  <div class="container">
+    <div class="row text-center">
+      <h1 class="display-3 fw-bold">I specialize in...</h1>
+      <div class="heading-line mb-1"></div>
+    </div>
+  <!-- START THE DESCRIPTION CONTENT  -->
+    <div class="row pt-2 pb-2 mt-0 mb-3">
+      <div class="col-md-6 border-right">
+        <div class="bg-white p-3">
+          <h2 class="fw-bold text-capitalize text-center">
+            Journalism, Social Media, Radio, and Television.
+          </h2>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="bg-white p-4 text-start">
+          <p class="fw-light">
+            Lorem ipsum dolor sit amet consectetur architecto magni, 
+            dicta maxime laborum temporibus dolorem esse doloremque illo quas nisi enim molestias. 
+            Tempore ducimus molestiae in dolore enim.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- START THE WEB DEVELOPMENT CONTENT  -->
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4">
+      <div class="services__content">
+        <div class="icon d-block fas fa-paper-plane"></div>
+        <h3 class="display-3--title mt-1">Journalism</h3>
+        <p class="lh-lg">
+          Senior Journalist at Momentum Media based in North Sydney, New South Wales. Previously, I was a Reporter and Intern at Australian Press Council and also held positions at News Corp Australia, ABC, Caters News Agency, Yaffa, 4Square Media, DCM Group, 4Square Media, Yaffa Publishing Group, Caters News Agency, Five Senses Education.
+        </p>
+        <a href="#contact">
+          <button type="button" class="rounded-pill btn-rounded">
+            Get in Touch
+            <span><i class="fas fa-arrow-right"></i></span>
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4 text-end">
+      <div class="services__pic">
+        <img src="https://www.investordaily.com.au/esg-summit/images/4/d/1/d/1/4d1d125a0db4a38b5b9c9b66f49d231e8373d29b-mm.png" alt="marketing illustration" class="img-fluid">
+      </div>
+    </div>
+  </div>
+    
+    <!-- START THE WEB DEVELOPMENT CONTENT  -->
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4 text-start">
+        <div class="services__pic">
+          <img src="https://res.cloudinary.com/momentum-media-group-pty-ltd/image/upload/c_scale,w_370,h_208,dpr_2/f_auto/v1734502431/Australian%20Aviation/videoframe_370973_pvnr1e.png?_i=AA" alt="web development illustration" class="img-fluid">
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4">
+        <div class="services__content">
+          <div class="icon d-block fas fa-paper-plane"></div>
+          <h3 class="display-3--title mt-1">Social Media</h3>
+          <p class="lh-lg">
+            I work at Momentum Media, contributing to the Australian Aviation Podcast, and have previously held roles at DCM Group and Caters News Agency, gaining valuable experience across journalism and media.
+          </p>
+          <a href="#contact">
+            <button type="button" class="rounded-pill btn-rounded">
+              Get in Touch
+              <span><i class="fas fa-arrow-right"></i></span>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- START THE CLOUD HOSTING CONTENT  -->
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4">
+        <div class="services__content">
+          <div class="icon d-block fas fa-paper-plane"></div>
+          <h3 class="display-3--title mt-1">Radio</h3>
+          <p class="lh-lg">
+            I work in radio broadcasting, with current contributions at Alive 90.5 FM and past roles at Bathurst Broadcasters, Nova Entertainment, and 2MCE, building extensive experience in production and hosting.
+          </p>
+          <a href="#contact">
+            <button type="button" class="rounded-pill btn-rounded">
+              Get in Touch
+              <span><i class="fas fa-arrow-right"></i></span>
+            </button>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4 text-end">
+        <div class="services__pic">
+          <img src="https://www.alive905.com.au/wp-content/uploads/2024/07/cropped-alive-logo-bdbbfe1b49a4.png" alt="cloud hosting illustration" class="img-fluid">
+        </div>
+      </div>
+    </div>
+
+    <!-- START THE WEB DEVELOPMENT CONTENT  -->
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4 text-start">
+        <div class="services__pic">
+          <img src="https://www.foxtel.com.au/content/dam/foxtel/shared/open-graph/foxtel-800x450.jpg" alt="web development illustration" class="img-fluid">
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 services mt-4">
+        <div class="services__content">
+          <div class="icon d-block fas fa-paper-plane"></div>
+          <h3 class="display-3--title mt-1">Television</h3>
+          <p class="lh-lg">
+            I work in television, with experience gained through roles at Prime7, Foxtel Australia, and WIN, where I developed skills in broadcasting and production.
+          </p>
+          <a href="#contact">
+            <button type="button" class="rounded-pill btn-rounded">
+              Get in Touch
+              <span><i class="fas fa-arrow-right"></i></span>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    
+  </div>
+</section>
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////
+                               START SECTION 5 - THE TESTIMONIALS  
+/////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<section id="testimonials" class="testimonials">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="1" d="M0,96L48,128C96,160,192,224,288,213.3C384,203,480,117,576,117.3C672,117,768,203,864,202.7C960,203,1056,117,1152,117.3C1248,117,1344,203,1392,245.3L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
+  <div class="container">
+    <div class="row text-center text-white">
+      <h1 class="display-3 fw-bold">My Socials</h1>
+      <hr style="width: 100px; height: 3px; " class="mx-auto">
+      <p class="lead pt-1">Check out my socials...</p>
+    </div>
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Social Media Buttons</title>
+      <style>
+        /* Section Styling: Center the buttons in a smaller container */
+        .social-buttons-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column; /* Stack items vertically if needed */
+          padding: 20px;
+          height: auto; /* Adjust height dynamically for mobile */
+          
+        }
+      
+        /* Button Array Styling */
+        .social-buttons {
+          display: flex;
+          gap: 15px; /* Smaller spacing between buttons for compact screens */
+          flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+          justify-content: center;
+        }
+      
+        /* Individual Button Styling */
+        .social-button {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 60px; /* Fixed button size for mobile */
+          height: 60px; /* Fixed button size for mobile */
+          border: none;
+          border-radius: 50%;
+          background-color: #e0e0e0;
+          cursor: pointer;
+          transition: background-color 0.3s, transform 0.3s;
+        }
+      
+        /* Button Icon Styling */
+        .social-button img {
+          width: 30px; /* Smaller icons for mobile */
+          height: 30px;
+        }
+      
+        /* Hover Effects */
+        .social-button:hover {
+          background-color: #d0d0d0;
+          transform: scale(1.1); /* Slight zoom effect */
+        }
+      </style>
+      
+      
+    
+    </head>
+    <body>
+      <!-- Container for the Buttons -->
+      <div class="social-buttons-container">
+        <div class="social-buttons">
+          <button class="social-button">
+            <img src="https://cdn-icons-png.flaticon.com/128/5968/5968764.png" alt="Facebook">
+          </button>
+          <button class="social-button">
+            <img src="https://cdn-icons-png.flaticon.com/128/5969/5969020.png" alt="Twitter">
+          </button>
+          <button class="social-button">
+            <img src="https://cdn-icons-png.flaticon.com/128/3955/3955024.png" alt="Instagram">
+          </button>
+          <button class="social-button">
+            <img src="https://cdn-icons-png.flaticon.com/128/145/145807.png" alt="LinkedIn">
+          </button>
+        </div>
+      </div>
+    </body>
+    </html>
+    
+
+
+
+
+
+        
+
+      
+    
+  </div>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="1" d="M0,96L48,128C96,160,192,224,288,213.3C384,203,480,117,576,117.3C672,117,768,203,864,202.7C960,203,1056,117,1152,117.3C1248,117,1344,203,1392,245.3L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+</section>
+
+
+
+
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////
+              START SECTION 8 - GET STARTED  
+/////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<section id="contact" class="get-started">
+  <div class="container">
+    <div class="row text-center">
+      <h1 class="display-3 fw-bold text-capitalize">Contact Me</h1>
+      <div class="heading-line"></div>
+      <p class="lh-lg">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero illum architecto modi.
+      </p>
+    </div>
+
+    <!-- START THE CTA CONTENT  -->
+    <div class="row text-white">
+      <div class="col-12 col-lg-6 gradient shadow p-3">
+        <div class="cta-info w-100">
+          <h4 class="display-4 fw-bold">Interested in my work?</h4>
+          <p class="lh-lg">
+            Submit the form and let me know!
+          </p>
+
+        </div>
+      </div>
+      <div class="col-12 col-lg-6 bg-white shadow p-3">
+        <div class="form w-100 pb-2">
+          <h4 class="display-3--title mb-5">Hi Jake, </h4>
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd5hsrLDn9_tOO9pRQCW3qNznAbOi-9ZD5xJuoM5WRxKtHzdw/viewform?embedded=true" width="640" height="959" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////
+                           START SECTION 9 - THE FOOTER  
+///////////////////////////////////////////////////////////////////////////////////////////////-->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <!-- CONTENT FOR THE MOBILE NUMBER  -->
+      <div class="col-md-4 col-lg-4 contact-box pt-1 d-md-block d-lg-flex d-flex">
+        <div class="contact-box__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-phone-call" viewBox="0 0 24 24" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
+            <path d="M15 7a2 2 0 0 1 2 2" />
+            <path d="M15 3a6 6 0 0 1 6 6" />
+          </svg>
+        </div>
+        <div class="contact-box__info">
+          <a href="#" class="contact-box__info--title">+1 728365413</a>
+          <p class="contact-box__info--subtitle">  Give me a call</p>
+        </div>
+      </div>  
+      <!-- CONTENT FOR EMAIL  -->
+      <div class="col-md-4 col-lg-4 contact-box pt-1 d-md-block d-lg-flex d-flex">
+        <div class="contact-box__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail-opened" viewBox="0 0 24 24" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <polyline points="3 9 12 15 21 9 12 3 3 9" />
+            <path d="M21 9v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" />
+            <line x1="3" y1="19" x2="9" y2="13" />
+            <line x1="15" y1="13" x2="21" y2="19" />
+          </svg>
+        </div>
+        <div class="contact-box__info">
+          <a href="#" class="contact-box__info--title">info@company.com</a>
+          <p class="contact-box__info--subtitle">Send me an email</p>
+        </div>
+      </div>
+      <!-- CONTENT FOR LOCATION  -->
+      <div class="col-md-4 col-lg-4 contact-box pt-1 d-md-block d-lg-flex d-flex">
+        <div class="contact-box__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-2" viewBox="0 0 24 24" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <line x1="18" y1="6" x2="18" y2="6.01" />
+            <path d="M18 13l-3.5 -5a4 4 0 1 1 7 0l-3.5 5" />
+            <polyline points="10.5 4.75 9 4 3 7 3 20 9 17 15 20 21 17 21 15" />
+            <line x1="9" y1="4" x2="9" y2="17" />
+            <line x1="15" y1="15" x2="15" y2="20" />
+          </svg>
+        </div>
+        <div class="contact-box__info">
+          <a href="#" class="contact-box__info--title">Sydney, NSW</a>
+          <p class="contact-box__info--subtitle"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- START THE CONTENT FOR THE CAMPANY INFO -->
+  <div class="container mt-5">
+    <div class="row text-white justify-content-center mt-3 pb-3">
+      <div class="col-12 col-sm-6 col-lg-6 mx-auto">
+        <h5 class="text-capitalize fw-bold">Jake Nelson</h5>
+        <hr class="bg-white d-inline-block mb-4" style="width: 60px; height: 2px;">
+        <p class="lh-lg">
+          Jake Nelson is an experienced trade journalist who has previously covered the print and packaging, consumer technology, and retirement living and aged care industries. He joined Momentum Media in early 2023, and currently works across both Australian Aviation and Space Connect.
+
+        </p>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-2 mb-4 mx-auto">
+        <h5 class="text-capitalize fw-bold">useful links</h5>
+        <hr class="bg-white d-inline-block mb-4" style="width: 60px; height: 2px;">
+        <ul class="list-inline campany-list">
+          <li><a href="#home"> Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-2 mb-4 mx-auto">
+        <h5 class="text-capitalize fw-bold">contact</h5>
+        <hr class="bg-white d-inline-block mb-4" style="width: 60px; height: 2px;">
+        <ul class="list-inline campany-list">
+          <li><a href="#">Lorem ipsum</a></li>
+          <li><a href="#">Lorem ipsum</a></li>
+          <li><a href="#">Lorem ipsum</a></li>
+          <li><a href="#">Lorem ipsum</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- START THE COPYRIGHT INFO  -->
+  <div class="footer-bottom pt-5 pb-5">
+    <div class="container">
+      <div class="row text-center text-white">
+        <div class="col-12">
+          <div class="footer-bottom__copyright">
+            &COPY; Copyright <a href="#">Jake Nelson</a> | Design <a href="bdwebdesign.com.au" target="_blank">BD Web Design</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP BUTTON  -->
+<a href="#" class="shadow btn-primary rounded-circle back-to-top">
+  <i class="fas fa-chevron-up"></i>
+</a>
+
+
+
+   
+    <script src="assets/vendors/js/glightbox.min.js"></script>
+
+    <script type="text/javascript">
+      const lightbox = GLightbox({
+        'touchNavigation': true,
+        'href': 'https://www.youtube.com/watch?v=J9lS14nM1xg',
+        'type': 'video',
+        'source': 'youtube', //vimeo, youtube or local
+        'width': 900,
+        'autoPlayVideos': 'true',
+});
+    
+    </script>
+     <script src="assets/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
