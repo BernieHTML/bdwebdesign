@@ -240,19 +240,27 @@
             userMessage.textContent = input.value;
             messages.appendChild(userMessage);
 
-            messages.scrollTop = messages.scrollHeight; 
+            messages.scrollTop = messages.scrollHeight;
 
-            const response = await fetch("http://localhost:8000/chat", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ prompt: input.value })
-            });
+            try {
+                const response = await fetch("http://localhost:3001/api/gemma", {  // Updated to backend port 3001
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ prompt: input.value })  // Send user input as a prompt
+                });
 
-            const data = await response.json();
-            const botMessage = document.createElement("div");
-            botMessage.classList.add("message", "bot-message");
-            botMessage.textContent = data.response;
-            messages.appendChild(botMessage);
+                const data = await response.json();
+                const botMessage = document.createElement("div");
+                botMessage.classList.add("message", "bot-message");
+                botMessage.textContent = data.reply;  // Assuming the response contains a `reply` field
+                messages.appendChild(botMessage);
+            } catch (error) {
+                const botMessage = document.createElement("div");
+                botMessage.classList.add("message", "bot-message");
+                botMessage.textContent = "Sorry, something went wrong!";
+                messages.appendChild(botMessage);
+                console.error("Error:", error);
+            }
 
             input.value = "";
             messages.scrollTop = messages.scrollHeight;
@@ -261,6 +269,8 @@
 
 </body>
 </html>
+
+
 
 
 
