@@ -218,53 +218,43 @@
     </div>
 
     <script>
-        function toggleChat() {
-            const chatContainer = document.getElementById("chatContainer");
-            chatContainer.style.display = chatContainer.style.display === "none" || chatContainer.style.display === "" ? "flex" : "none";
-        }
-
-        function handleKeyPress(event) {
-            if (event.key === "Enter") {
-                sendMessage();
-            }
-        }
-
         async function sendMessage() {
-            const input = document.getElementById("chatInput");
-            const messages = document.getElementById("chatMessages");
+    const input = document.getElementById("chatInput");
+    const messages = document.getElementById("chatMessages");
 
-            if (input.value.trim() === "") return;
+    if (input.value.trim() === "") return;
 
-            const userMessage = document.createElement("div");
-            userMessage.classList.add("message", "user-message");
-            userMessage.textContent = input.value;
-            messages.appendChild(userMessage);
+    const userMessage = document.createElement("div");
+    userMessage.classList.add("message", "user-message");
+    userMessage.textContent = input.value;
+    messages.appendChild(userMessage);
 
-            messages.scrollTop = messages.scrollHeight;
+    messages.scrollTop = messages.scrollHeight;
 
-            try {
-                const response = await fetch("http://localhost:3001/api/gemma", {  // Updated to backend port 3001
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ prompt: input.value })  // Send user input as a prompt
-                });
+    try {
+        const response = await fetch("http://localhost:3001/api/gemma", {  // Backend API endpoint
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt: input.value })  // Send user input as a prompt
+        });
 
-                const data = await response.json();
-                const botMessage = document.createElement("div");
-                botMessage.classList.add("message", "bot-message");
-                botMessage.textContent = data.reply;  // Assuming the response contains a `reply` field
-                messages.appendChild(botMessage);
-            } catch (error) {
-                const botMessage = document.createElement("div");
-                botMessage.classList.add("message", "bot-message");
-                botMessage.textContent = "Sorry, something went wrong!";
-                messages.appendChild(botMessage);
-                console.error("Error:", error);
-            }
+        const data = await response.json();
+        const botMessage = document.createElement("div");
+        botMessage.classList.add("message", "bot-message");
+        botMessage.textContent = data.reply;  // Gemma's reply
+        messages.appendChild(botMessage);
+    } catch (error) {
+        const botMessage = document.createElement("div");
+        botMessage.classList.add("message", "bot-message");
+        botMessage.textContent = "Sorry, something went wrong!";
+        messages.appendChild(botMessage);
+        console.error("Error:", error);
+    }
 
-            input.value = "";
-            messages.scrollTop = messages.scrollHeight;
-        }
+    input.value = "";
+    messages.scrollTop = messages.scrollHeight;
+}
+
     </script>
 
 </body>
