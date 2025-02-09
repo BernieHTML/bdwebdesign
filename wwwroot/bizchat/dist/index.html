@@ -218,47 +218,65 @@
     </div>
 
     <script>
+        // Toggle chat window visibility
+        function toggleChat() {
+            const chatContainer = document.getElementById("chatContainer");
+            chatContainer.style.display = chatContainer.style.display === "none" || chatContainer.style.display === "" ? "flex" : "none";
+        }
+
+        // Handle "Enter" key for sending messages
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        }
+
+        // Send message to Gemma via API and display response
         async function sendMessage() {
-    const input = document.getElementById("chatInput");
-    const messages = document.getElementById("chatMessages");
+            const input = document.getElementById("chatInput");
+            const messages = document.getElementById("chatMessages");
 
-    if (input.value.trim() === "") return;
+            if (input.value.trim() === "") return;
 
-    const userMessage = document.createElement("div");
-    userMessage.classList.add("message", "user-message");
-    userMessage.textContent = input.value;
-    messages.appendChild(userMessage);
+            // Display user's message
+            const userMessage = document.createElement("div");
+            userMessage.classList.add("message", "user-message");
+            userMessage.textContent = input.value;
+            messages.appendChild(userMessage);
 
-    messages.scrollTop = messages.scrollHeight;
+            messages.scrollTop = messages.scrollHeight;
 
-    try {
-        const response = await fetch("http://localhost:3001/api/gemma", {  // Backend API endpoint
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ prompt: input.value })  // Send user input as a prompt
-        });
+            try {
+                // Send to Gemma via WebUI API
+                const response = await fetch("http://localhost:5000/api", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: input.value }) // Send user input
+                });
 
-        const data = await response.json();
-        const botMessage = document.createElement("div");
-        botMessage.classList.add("message", "bot-message");
-        botMessage.textContent = data.reply;  // Gemma's reply
-        messages.appendChild(botMessage);
-    } catch (error) {
-        const botMessage = document.createElement("div");
-        botMessage.classList.add("message", "bot-message");
-        botMessage.textContent = "Sorry, something went wrong!";
-        messages.appendChild(botMessage);
-        console.error("Error:", error);
-    }
+                const data = await response.json();
 
-    input.value = "";
-    messages.scrollTop = messages.scrollHeight;
-}
+                // Display Gemma's response
+                const botMessage = document.createElement("div");
+                botMessage.classList.add("message", "bot-message");
+                botMessage.textContent = data.response; // Gemma's reply
+                messages.appendChild(botMessage);
+            } catch (error) {
+                const botMessage = document.createElement("div");
+                botMessage.classList.add("message", "bot-message");
+                botMessage.textContent = "Sorry, something went wrong!";
+                messages.appendChild(botMessage);
+                console.error("Error:", error);
+            }
 
+            input.value = ""; // Clear input field
+            messages.scrollTop = messages.scrollHeight; // Scroll to bottom
+        }
     </script>
 
 </body>
 </html>
+
 
 
 
