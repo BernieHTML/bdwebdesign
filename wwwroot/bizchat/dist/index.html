@@ -221,59 +221,70 @@
         // Toggle chat window visibility
         function toggleChat() {
             const chatContainer = document.getElementById("chatContainer");
-            chatContainer.style.display = chatContainer.style.display === "none" || chatContainer.style.display === "" ? "flex" : "none";
+            chatContainer.style.display = 
+                chatContainer.style.display === "none" || chatContainer.style.display === "" ? "flex" : "none";
         }
-
+    
         // Handle "Enter" key for sending messages
         function handleKeyPress(event) {
             if (event.key === "Enter") {
                 sendMessage();
             }
         }
-
-        // Send message to Gemma via API and display response
+    
         async function sendMessage() {
             const input = document.getElementById("chatInput");
             const messages = document.getElementById("chatMessages");
-
+    
             if (input.value.trim() === "") return;
-
-            // Display user's message
+    
+            // Append user message to chat
             const userMessage = document.createElement("div");
             userMessage.classList.add("message", "user-message");
             userMessage.textContent = input.value;
             messages.appendChild(userMessage);
-
             messages.scrollTop = messages.scrollHeight;
-
+    
             try {
-                // Send to Gemma via WebUI API
-                const response = await fetch("http://localhost:5000/api", {
+                const response = await fetch("http://localhost:3000/api/chat/completions", {  // Open WebUI API
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ message: input.value }) // Send user input
+                    headers: { 
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2ZDk2ZDU1LWUwMmMtNGY2Mi1iNTZlLTdjYzMzOTk0MGZlYyJ9.dMZHD0RRM5_LFlW6d96WJOhg5F1MNmkH0sTC7KwouhQ" // Your API Key
+                    },
+                    body: JSON.stringify({
+                        model: "gemma",  // Ensure this is the correct model name inside WebUI
+                        messages: [
+                            { "role": "user", "content": input.value }
+                        ]
+                    })
                 });
-
+    
                 const data = await response.json();
-
-                // Display Gemma's response
+    
+                if (!data.choices || data.choices.length === 0) {
+                    throw new Error("Invalid response from API");
+                }
+    
+                // Append bot message to chat
                 const botMessage = document.createElement("div");
                 botMessage.classList.add("message", "bot-message");
-                botMessage.textContent = data.response; // Gemma's reply
+                botMessage.textContent = data.choices[0].message.content;
                 messages.appendChild(botMessage);
+    
             } catch (error) {
+                console.error("Error:", error);
                 const botMessage = document.createElement("div");
                 botMessage.classList.add("message", "bot-message");
                 botMessage.textContent = "Sorry, something went wrong!";
                 messages.appendChild(botMessage);
-                console.error("Error:", error);
             }
-
-            input.value = ""; // Clear input field
-            messages.scrollTop = messages.scrollHeight; // Scroll to bottom
+    
+            input.value = "";
+            messages.scrollTop = messages.scrollHeight;
         }
     </script>
-
+    
 </body>
 </html>
 
