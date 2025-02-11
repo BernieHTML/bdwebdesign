@@ -246,7 +246,7 @@
             messages.scrollTop = messages.scrollHeight;
     
             try {
-                const response = await fetch("http://localhost:3000/api/chat/completions", {  // Open WebUI API
+                const response = await fetch("http://localhost:8080/api/chat/completions", {  // Open WebUI API
                     method: "POST",
                     headers: { 
                         "Content-Type": "application/json",
