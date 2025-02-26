@@ -650,7 +650,110 @@ h6,
     </div>
 </div>
 
-
+<style>
+    section {
+      position: relative;
+      background: white;
+      padding: 4rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0, 102, 255, 0.8);
+      font-family: 'Poppins', sans-serif;
+    }
+  
+    section::before {
+      content: "";
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      right: -15px;
+      bottom: -15px;
+      border: 10px solid rgba(0, 102, 255, 0.9);
+      box-shadow: 0 0 50px rgba(0, 102, 255, 0.9);
+      pointer-events: none;
+    }
+  
+    h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: black;
+      text-align: left;
+    }
+  
+    p {
+      font-size: 1.2rem;
+      color: gray;
+      margin-top: 1rem;
+      text-align: left;
+    }
+  
+    .content {
+      max-width: 600px;
+    }
+  
+    .image-container {
+      width: 10rem;
+      height: 10rem;
+      border: 4px solid #ccc;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+  
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  
+    @media (max-width: 768px) {
+      section {
+        flex-direction: column;
+        text-align: center;
+      }
+  
+      .content, .image-container {
+        max-width: 100%;
+        width: auto;
+        text-align: center;
+      }
+  
+      h2 {
+        font-size: 2rem;
+      }
+  
+      p {
+        font-size: 1rem;
+      }
+  
+      .image-container {
+        width: 8rem;
+        height: 8rem;
+        margin-top: 1.5rem;
+      }
+    }
+  </style>
+  
+  <!-- Add Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <section>
+    <div class="content">
+      <h2>Introducing TexFlow</h2>
+      <p>The only AI you and your business will ever need.</p>
+    </div>
+    <div class="image-container">
+      <!-- Insert your image here -->
+      <img src="your-image.jpg" alt="TexFlow">
+    </div>
+  </section>
+  
 
 
 
