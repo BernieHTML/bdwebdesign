@@ -712,6 +712,27 @@ h6,
       object-fit: cover;
     }
   
+    .button {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+      background-color: rgba(0, 102, 255, 0.9);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(0, 102, 255, 0.8);
+      transition: all 0.3s ease-in-out;
+    }
+  
+    .button:hover {
+      background-color: rgba(0, 102, 255, 1);
+      box-shadow: 0 0 30px rgba(0, 102, 255, 1);
+    }
+  
     @media (max-width: 768px) {
       section {
         flex-direction: column;
@@ -747,12 +768,14 @@ h6,
     <div class="content">
       <h2>Introducing TexFlow</h2>
       <p>The only AI you and your business will ever need.</p>
+      <a href="#" class="button">Coming Soon</a>
     </div>
     <div class="image-container">
       <!-- Insert your image here -->
       <img src="your-image.jpg" alt="TexFlow">
     </div>
   </section>
+  
   
 
 
