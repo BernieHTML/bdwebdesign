@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+
         <title>TexFlow - AI Chatbots for Businesses </title>
+
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -18,7 +20,9 @@
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container px-5">
+
                     <a class="navbar-brand" href="index.html">TexFlow - By BD Web Design</a>
+
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -43,7 +47,9 @@
                     <div class="row gx-5 align-items-center justify-content-center">
                         <div class="col-lg-8 col-xl-7 col-xxl-6">
                             <div class="my-5 text-center text-xl-start">
+
                                 <h1 class="display-5 fw-bolder text-white mb-2">Meet TexFlow</h1>
+
                                 <p class="lead fw-normal text-white-50 mb-4">Your Business AI Agent</p>
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                                     <a class="btn btn-primary btn-lg px-4 me-sm-3" href="contact.html">I want one!</a>
@@ -95,7 +101,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Texflow</title>
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -209,7 +217,9 @@
     <div class="chat-toggle" onclick="toggleChat()">💬</div>
 
     <div class="chat-container" id="chatContainer">
+
         <div class="chat-header" onclick="toggleChat()">TexFlow</div>
+
         <div class="chat-messages" id="chatMessages"></div>
         <div class="chat-input">
             <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
@@ -218,12 +228,18 @@
     </div>
 
     <script>
+
+        // Toggle chat window visibility
+
         function toggleChat() {
             const chatContainer = document.getElementById("chatContainer");
             chatContainer.style.display = 
                 chatContainer.style.display === "none" || chatContainer.style.display === "" ? "flex" : "none";
         }
     
+
+        // Handle "Enter" key for sending messages
+
         function handleKeyPress(event) {
             if (event.key === "Enter") {
                 sendMessage();
@@ -236,6 +252,9 @@
     
             if (input.value.trim() === "") return;
     
+
+            // Append user message to chat
+
             const userMessage = document.createElement("div");
             userMessage.classList.add("message", "user-message");
             userMessage.textContent = input.value;
@@ -243,19 +262,23 @@
             messages.scrollTop = messages.scrollHeight;
     
             try {
+
                 const response = await fetch("http://localhost:3000/chat", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ message: input.value })
+
                 });
     
                 const data = await response.json();
     
+
                 if (!data.response) throw new Error("Invalid response from AI");
     
                 const botMessage = document.createElement("div");
                 botMessage.classList.add("message", "bot-message");
                 botMessage.textContent = data.response;
+
                 messages.appendChild(botMessage);
     
             } catch (error) {
@@ -271,8 +294,7 @@
         }
     </script>
     
-    
-    
+
 </body>
 </html>
 
