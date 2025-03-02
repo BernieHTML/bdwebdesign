@@ -725,9 +725,95 @@ h6,
         </div>
     </div>
     <!-- About End -->
-    <!-- Blog Start -->
-  
-    <!-- Blog Start -->
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Social Contact Section</title>
+        <style>
+            /* Unique container to avoid conflicts */
+            .bd-social-container {
+                display: flex;
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+    
+            /* Unique box styling */
+            .bd-social-box {
+                width: 160px;
+                height: 160px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                border-radius: 12px;
+                font-size: 16px;
+                font-weight: bold;
+                color: black;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                background-color: white;
+            }
+    
+            .bd-social-box:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+    
+            /* WhatsApp & TikTok styles */
+            .bd-whatsapp {
+                border: 3px solid #25D366;
+            }
+    
+            .bd-tiktok {
+                border: 3px solid black;
+            }
+    
+            /* Unique icon styling */
+            .bd-social-icon {
+                width: 55px;
+                height: 55px;
+                margin-bottom: 10px;
+            }
+    
+            /* Responsive adjustments */
+            @media (max-width: 450px) {
+                .bd-social-box {
+                    width: 130px;
+                    height: 130px;
+                    font-size: 14px;
+                }
+                .bd-social-icon {
+                    width: 45px;
+                    height: 45px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+    
+        <div class="bd-social-container">
+            <!-- WhatsApp Box -->
+            <a href="https://wa.me/61436666404" target="_blank" class="bd-social-box bd-whatsapp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" class="bd-social-icon">
+                WhatsApp
+            </a>
+    
+            <!-- TikTok Box -->
+            <a href="https://www.tiktok.com/@yourusername" target="_blank" class="bd-social-box bd-tiktok">
+                <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok Logo" class="bd-social-icon">
+                TikTok
+            </a>
+        </div>
+    
+    </body>
+    </html>
+    
+
+
 
 
     <!-- Vendor Start -->
@@ -751,28 +837,7 @@ h6,
     <!-- Vendor End -->
     
 
-    <style>
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background-color: #25D366;
-            color: white;
-            border-radius: 50%;
-            width: 280px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            text-decoration: none;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-        }
-    </style>
-    
-    <a href="https://wa.me/61436666404" target="_blank" class="whatsapp-float">
-         🟢Whatsapp🟢
-    </a>
+
     
 
 
