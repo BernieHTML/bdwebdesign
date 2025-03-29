@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextFlow AI - Custom AI Chatbots</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#10B981'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-white">
+    <nav class="fixed w-full bg-white/80 backdrop-blur-sm z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-['Pacifico'] text-primary">logo</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-primary">Features</a>
+                    <a href="#capabilities" class="text-gray-600 hover:text-primary">Capabilities</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-primary">Pricing</a>
+                    <a href="#docs" class="text-gray-600 hover:text-primary">Documentation</a>
+                    <button class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-primary/90 transition-all whitespace-nowrap cursor-pointer">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-24 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://public.readdy.ai/ai/img_res/2528e39577aa1d97d55ab9e476a55776.jpg')] bg-cover bg-center opacity-20"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-5xl font-bold text-gray-900 mb-6">Transform Text Processing with AI Power</h1>
+                    <p class="text-xl text-gray-600 mb-8">Experience the next generation of intelligent text analysis, summarization, and generation with TextFlow AI's advanced natural language processing capabilities.</p>
+                    <div class="flex gap-4">
+                        <button class="bg-primary text-white px-8 py-4 !rounded-button text-lg font-semibold hover:bg-primary/90 transition-all whitespace-nowrap cursor-pointer">Start Free Trial</button>
+                        <button class="bg-white border-2 border-primary text-primary px-8 py-4 !rounded-button text-lg font-semibold hover:bg-primary/5 transition-all whitespace-nowrap cursor-pointer">Watch Demo</button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://public.readdy.ai/ai/img_res/12c96c30c6ebcdae39ee6f2ebfa7a96e.jpg" alt="TextFlow AI Interface" class="rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="capabilities" class="py-24 bg-gradient-to-b from-white to-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">AI Capabilities</h2>
+                <p class="text-xl text-gray-600">Powerful features that revolutionize text processing</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-6">
+                        <i class="ri-brain-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Smart Analysis</h3>
+                    <p class="text-gray-600">Advanced NLP algorithms analyze text content for sentiment, context, and key insights with unprecedented accuracy.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-6">
+                        <i class="ri-file-text-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Auto Summarization</h3>
+                    <p class="text-gray-600">Generate concise, accurate summaries of long documents while preserving key information and context.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-6">
+                        <i class="ri-translate-2-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Multi-language Support</h3>
+                    <p class="text-gray-600">Process and analyze text in over 100 languages with native-level understanding and generation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Key Features</h2>
+                <p class="text-xl text-gray-600">Everything you need for professional text processing</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-xl opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                    <div class="relative p-8 rounded-xl border border-gray-100">
+                        <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-6">
+                            <i class="ri-speed-line text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Real-time Processing</h3>
+                        <p class="text-gray-600">Process millions of words in seconds with our optimized cloud infrastructure.</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-xl opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                    <div class="relative p-8 rounded-xl border border-gray-100">
+                        <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-6">
+                            <i class="ri-api-line text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">API Integration</h3>
+                        <p class="text-gray-600">Seamlessly integrate with your existing workflow through our robust API.</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-xl opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                    <div class="relative p-8 rounded-xl border border-gray-100">
+                        <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-6">
+                            <i class="ri-shield-check-line text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Enterprise Security</h3>
+                        <p class="text-gray-600">Bank-level encryption and compliance with major security standards.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Experience the Power of AI</h2>
+                    <p class="text-xl text-gray-600 mb-8">Our advanced AI models understand context, sentiment, and nuance just like a human reader, but at massive scale.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <div class="w-6 h-6 flex items-center justify-center text-primary">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="text-gray-700">99.9% accuracy in text analysis</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-6 h-6 flex items-center justify-center text-primary">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="text-gray-700">Process 1M+ documents per hour</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-6 h-6 flex items-center justify-center text-primary">
+                                <i class="ri-check-line"></i>
+                            </div>
+                            <span class="text-gray-700">Support for 100+ languages</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative">
+                    <img src="https://public.readdy.ai/ai/img_res/ad873f940b7d91217e9f42169c78d567.jpg" alt="TextFlow AI Analysis" class="rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>TexFlow AI Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        #chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            font-size: 14px;
+            background: white;
+        }
+
+        #chat-header {
+            background: #007bff;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        #chatbox {
+            height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #chat-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+            background: white;
+        }
+
+        #userInput {
+            flex: 1;
+            border: none;
+            padding: 10px;
+            border-bottom-left-radius: 15px;
+            outline: none;
+        }
+
+        #sendButton {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-bottom-right-radius: 15px;
+        }
+
+        #sendButton:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id='chat-container'>
+        <div id='chat-header'>TexFlow Chat</div>
+        <div id='chatbox'></div>
+        <div id='chat-input'>
+            <input type='text' id='userInput' placeholder='Type a message...'>
+            <button id='sendButton'>Send</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("sendButton").addEventListener("click", async function () {
+            const userInput = document.getElementById("userInput").value;
+            if (!userInput) return;
+
+            const chatBox = document.getElementById("chatbox");
+            chatBox.innerHTML += `<div><strong>You:</strong> ${userInput}</div>`;
+
+            const response = await fetch("http://localhost:3002/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: userInput })
+            });
+
+            const data = await response.json();
+            const botReply = data.reply || "Error getting response";
+            chatBox.innerHTML += `<div><strong>Bot:</strong> ${botReply}</div>`;
+
+            document.getElementById("userInput").value = "";
+        });
+    </script>
+</body>
+</html>
+
+
+
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">Ready to Transform Your Text Processing?</h2>
+                <p class="text-xl text-gray-600 mb-8">Join thousands of companies already using TextFlow AI</p>
+                <button class="bg-primary text-white px-8 py-4 !rounded-button text-lg font-semibold hover:bg-primary/90 transition-all whitespace-nowrap cursor-pointer">Start Free Trial Now</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const nav = document.querySelector('nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 0) {
+                    nav.classList.add('shadow-sm');
+                } else {
+                    nav.classList.remove('shadow-sm');
+                }
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
