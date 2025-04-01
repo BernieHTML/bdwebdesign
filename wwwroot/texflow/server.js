@@ -50,8 +50,13 @@ app.post("/chat", async (req, res) => {
     }
 });
 
-const HOST = "0.0.0.0"; // This allows access from external devices
-app.listen(PORT, HOST, () => console.log(`Server running on http://${HOST}:${PORT}`));
+const PORT = 3002;
+const HOST = "0.0.0.0"; // Allows external access
+
+app.listen(PORT, HOST, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
 
 
 
