@@ -164,6 +164,78 @@
     .nav-links.open {
       display: flex;
     }
+
+    .alt-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 80px 30px;
+  flex-wrap: wrap;
+  background: transparent;
+}
+
+.alt-content {
+  display: flex;
+  flex-direction: row;
+  background: rgba(30, 30, 50, 0.6);
+  border-radius: 30px;
+  box-shadow: 0 0 16px rgba(100, 100, 255, 0.15);
+  overflow: hidden;
+  max-width: 1200px;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.alt-content:hover {
+  transform: scale(1.01);
+}
+
+.alt-image,
+.alt-text {
+  flex: 1;
+  padding: 40px;
+}
+
+.alt-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 0 12px rgba(100, 100, 255, 0.3);
+}
+
+.alt-text h2 {
+  color: #cfcfff;
+  margin-top: 0;
+}
+
+.alt-text p {
+  color: #ccc;
+}
+
+.reverse .alt-image {
+  order: 2;
+}
+.reverse .alt-text {
+  order: 1;
+}
+
+@media (max-width: 768px) {
+  .alt-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .alt-image,
+  .alt-text {
+    padding: 20px;
+  }
+  .reverse .alt-image,
+  .reverse .alt-text {
+    order: initial;
+  }
+}
+
+
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -191,31 +263,54 @@
     </div>
   </section>
 
-  <section class="section">
-    <div class="card">
-      <h2>Introducing TexFlow - Your Versatile AI ChatBot</h2>
-      <p> TexFlow AI is your new solution for customer and client service and relations, both professionally, or for your business.</p>
-      <img src="bdwebdesign.com.au/images/texflowlogo.png" alt="Web design visual">
-    </div>
-    <div class="card">
-      <h2>Powerful Integrations</h2>
-      <p>Connect with tools like booking systems, chatbots, and calendars—all built seamlessly into your site with glowing flair.</p>
-      <img src="https://via.placeholder.com/500x300" alt="Integration sample">
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="card">
-      <h2>Effortless Updates</h2>
-      <p>Manage your site easily without tech skills. We'll show you how to stay in control and grow your online presence.</p>
-      <img src="https://via.placeholder.com/500x300" alt="Dashboard screenshot">
-    </div>
-    <div class="card">
-      <h2>Optimized for Mobile</h2>
-      <p>Every design is fully responsive. Whether your visitors are on desktop or phone, your site will look amazing.</p>
-      <img src="https://via.placeholder.com/500x300" alt="Mobile website example">
+  <section class="alt-section">
+    <div class="alt-content">
+      <div class="alt-image">
+        <img src="https://bdwebdesign.com.au/images/texflowlogo.png" alt="TexFlow Logo">
+      </div>
+      <div class="alt-text">
+        <h2>Introducing TexFlow - Your Versatile AI ChatBot</h2>
+        <p>TexFlow AI is your new solution for customer and client service and relations, both professionally, or for your business.</p>
+      </div>
     </div>
   </section>
+  
+  <section class="alt-section">
+    <div class="alt-content reverse">
+      <div class="alt-image">
+        <img src="https://via.placeholder.com/500x300" alt="Integration sample">
+      </div>
+      <div class="alt-text">
+        <h2>Powerful Integrations</h2>
+        <p>Connect with tools like booking systems, chatbots, and calendars—all built seamlessly into your site with glowing flair.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="alt-section">
+    <div class="alt-content">
+      <div class="alt-image">
+        <img src="https://via.placeholder.com/500x300" alt="Dashboard screenshot">
+      </div>
+      <div class="alt-text">
+        <h2>Effortless Updates</h2>
+        <p>Manage your site easily without tech skills. We'll show you how to stay in control and grow your online presence.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="alt-section">
+    <div class="alt-content reverse">
+      <div class="alt-image">
+        <img src="https://via.placeholder.com/500x300" alt="Mobile website example">
+      </div>
+      <div class="alt-text">
+        <h2>Optimized for Mobile</h2>
+        <p>Every design is fully responsive. Whether your visitors are on desktop or phone, your site will look amazing.</p>
+      </div>
+    </div>
+  </section>
+  
 
   <!DOCTYPE html>
     <html lang="en">
@@ -489,4 +584,38 @@
     }
   </script>
 </body>
+
+<!-- Footer -->
+<footer class="bg-black text-white mt-16">
+    <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+      
+      <!-- Brand Name -->
+      <div class="text-2xl md:text-3xl font-bold tracking-wide text-white">
+        BD Web Design
+      </div>
+  
+      <!-- Glowing Nav Buttons -->
+      <div class="flex space-x-4">
+        <a href="/" class="px-5 py-2 rounded-full border border-blue-500 text-white text-sm font-medium shadow-lg hover:bg-blue-600 hover:shadow-blue-500 transition duration-300 glow-button">Home</a>
+        <a href="/texflow" class="px-5 py-2 rounded-full border border-blue-500 text-white text-sm font-medium shadow-lg hover:bg-blue-600 hover:shadow-blue-500 transition duration-300 glow-button">TexFlow</a>
+        <a href="/phone-repairs" class="px-5 py-2 rounded-full border border-blue-500 text-white text-sm font-medium shadow-lg hover:bg-blue-600 hover:shadow-blue-500 transition duration-300 glow-button">Phone Repairs</a>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Optional Glowing Button Animation -->
+  <style>
+    .glow-button {
+      box-shadow: 0 0 10px rgba(0, 132, 255, 0.6), 0 0 20px rgba(0, 132, 255, 0.4);
+      transition: box-shadow 0.3s ease;
+    }
+  
+    .glow-button:hover {
+      box-shadow: 0 0 15px rgba(0, 132, 255, 0.8), 0 0 30px rgba(0, 132, 255, 0.6);
+    }
+  </style>
+  
+
+
+
 </html>
