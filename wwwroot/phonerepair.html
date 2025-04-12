@@ -233,6 +233,65 @@
   }
 }
 
+            /* Unique container to avoid conflicts */
+            .bd-social-container {
+                display: flex;
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+    
+            /* Unique box styling */
+            .bd-social-box {
+                width: 160px;
+                height: 160px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                border-radius: 12px;
+                font-size: 16px;
+                font-weight: bold;
+                color: black;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                background-color: white;
+            }
+    
+            .bd-social-box:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+    
+            /* WhatsApp & TikTok styles */
+            .bd-whatsapp {
+                border: 3px solid #25D366;
+            }
+    
+            .bd-tiktok {
+                border: 3px solid black;
+            }
+    
+            /* Unique icon styling */
+            .bd-social-icon {
+                width: 55px;
+                height: 55px;
+                margin-bottom: 10px;
+            }
+    
+            /* Responsive adjustments */
+            @media (max-width: 450px) {
+                .bd-social-box {
+                    width: 130px;
+                    height: 130px;
+                    font-size: 14px;
+                }
+                .bd-social-icon {
+                    width: 45px;
+                    height: 45px;
+                }
+            }
+
 
 
   </style>
@@ -298,15 +357,20 @@
   </section>
 
   <section class="alt-section">
-    <div class="alt-content reverse">
-      <div class="alt-image">
-        <img src="https://images.pexels.com/photos/6078123/pexels-photo-6078123.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Affordable pricing">
-      </div>
-      <div class="alt-text">
-        <h2>Fair Pricing, No Surprises</h2>
-        <p>Get transparent quotes with no hidden fees. We’ll let you know the exact cost before we begin — and we only charge if we fix it.</p>
-      </div>
-    </div>
+        <h2>Contact Us Today</h2>
+        <div class="bd-social-container">
+            <!-- WhatsApp Box -->
+            <a href="https://wa.me/61436666404" target="_blank" class="bd-social-box bd-whatsapp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" class="bd-social-icon">
+                WhatsApp
+            </a>
+    
+            <!-- TikTok Box -->
+            <a href="https://www.tiktok.com/@bd_phone_repairs?_t=ZS-8uLBaVhBE7b&_r=1" target="_blank" class="bd-social-box bd-tiktok">
+                <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok Logo" class="bd-social-icon">
+                TikTok
+            </a>
+        </div>
   </section>
 
   <section class="section">
