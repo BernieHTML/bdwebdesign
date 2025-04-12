@@ -3,46 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TexFlow - AI Chat Assistant | BD Web Design</title>
-  <link rel="stylesheet" href="/style.css" />
+  <title>TexFlow | BD Web Design</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="dark-theme">
+<body>
 
-  <!-- Hero Section -->
-  <section class="hero texflow-hero">
-    <div class="hero-content">
-      <h1 class="glow-text">TexFlow</h1>
-      <p>Meet your AI-powered assistant for small business communication, bookings, and more.</p>
+  <!-- Navbar (same across all pages) -->
+  <header>
+    <div class="nav-logo">BD Web Design</div>
+    <nav>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="webdesign.html">Web Design</a>
+        <a href="texflow.html">TexFlow</a>
+        <a href="repairs.html">Phone Repairs</a>
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div></div><div></div><div></div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>TexFlow: AI That Works for You</h1>
+    <p>Your AI chatbot for bookings, messaging, and customer service. Powered by smart tech, tailored for small businesses.</p>
+    <div class="hero-buttons">
+      <button onclick="document.getElementById('test-section').scrollIntoView({behavior:'smooth'})">Try TexFlow</button>
+      <button>Learn More</button>
     </div>
   </section>
 
-  <!-- Try It Out Section -->
-  <section class="test-texflow">
-    <div class="test-container">
-      <h2>Try TexFlow Now</h2>
-      <p>Interact with the demo chatbot below to see how TexFlow can help your business.</p>
-      
-      <!-- Replace below div with chatbot iframe or embed -->
+  <!-- Try It Section -->
+  <section id="test-section" class="section">
+    <div class="card">
+      <h2>Try TexFlow</h2>
+      <p>Interact with the demo chatbot below to see how TexFlow responds to customers in real time.</p>
       <div class="chat-demo-box">
-        <p class="placeholder-text">[Floating Chatbot Embed Goes Here]</p>
+        <p class="placeholder-text">[Chatbot will appear here]</p>
       </div>
     </div>
   </section>
 
-  <!-- Call to Action Section -->
-  <section class="texflow-cta">
-    <div class="cta-glow"></div>
-    <div class="cta-container">
-      <div class="cta-text">
-        <h2 class="glow-text">Ready to Add TexFlow to Your Website?</h2>
-        <p>Upgrade your customer experience with AI-powered conversations. TexFlow is fast, reliable, and easy to integrate.</p>
-        <a href="/contact">Get Started</a>
+  <!-- CTA Section -->
+  <section class="alt-section">
+    <div class="alt-content">
+      <div class="alt-text">
+        <h2>Want TexFlow on Your Website?</h2>
+        <p>TexFlow helps you capture leads, respond to inquiries, and schedule appointments 24/7. It's fast, customizable, and easy to install.</p>
+        <a href="contact.html">
+          <button>Get Started</button>
+        </a>
       </div>
-      <div class="cta-image">
-        <img src="assets/texflow-chat-screenshot.png" alt="TexFlow Chatbot Screenshot" />
+      <div class="alt-image">
+        <img src="assets/texflow-chat-screenshot.png" alt="TexFlow screenshot">
       </div>
     </div>
   </section>
 
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("open");
+    }
+  </script>
 </body>
 </html>
