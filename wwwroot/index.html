@@ -256,17 +256,11 @@
   justify-content: space-between;
 }
 
-@media (min-width: 768px) {
-  .cta-container {
-    flex-direction: row;
-    padding: 0 2rem;
-  }
-}
-
 .cta-text {
   flex: 1;
   color: #ffffff;
   z-index: 10;
+  text-align: center;
 }
 
 .cta-text h2 {
@@ -280,6 +274,9 @@
   font-size: 1.125rem;
   color: #d1d5db;
   margin-bottom: 2rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cta-text a {
@@ -311,6 +308,49 @@
   border-radius: 1.5rem;
   border: 3px solid #2563eb;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* Responsive layout for medium screens and up */
+@media (min-width: 768px) {
+  .cta-container {
+    flex-direction: row;
+    text-align: left;
+    padding: 0 2rem;
+  }
+
+  .cta-text {
+    text-align: left;
+  }
+
+  .cta-text p {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* Responsive tweaks for smaller screens */
+@media (max-width: 480px) {
+  .cta-text h2 {
+    font-size: 1.75rem;
+  }
+
+  .cta-text p {
+    font-size: 1rem;
+  }
+
+  .cta-text a {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .cta-image img {
+    max-width: 100%;
+  }
+
+  .cta-glow {
+    width: 250px;
+    height: 250px;
+  }
 }
 
 /* Glowing Background Accent */
