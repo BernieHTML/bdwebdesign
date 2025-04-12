@@ -291,6 +291,58 @@
                     height: 45px;
                 }
             }
+            
+            .social-buttons {
+  display: flex;
+  flex-direction: row; /* align side by side */
+  gap: 2rem; /* even spacing between buttons */
+  align-items: center;
+  justify-content: center; /* center them */
+  margin-top: 2.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.social-button {
+  width: 120px;  /* bigger size */
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.social-button:hover {
+  transform: scale(1.08);
+}
+
+.social-button.whatsapp {
+  background-color: #25D366;
+}
+
+.social-button.whatsapp:hover {
+  background-color: #1ebf59;
+}
+
+.social-button.tiktok {
+  background-color: #000;
+}
+
+.social-button.tiktok:hover {
+  background-color: #222;
+}
+
+.social-icon {
+  width: 32px; /* scale up icon inside */
+  height: 32px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* keeps icons white if needed */
+}
+
+
 
 
 
@@ -315,9 +367,20 @@
     <h1>Reliable Phone Repairs<br>Right Here in the Blue Mountains</h1>
     <p>Screen replacements, battery fixes, water damage restoration and more — fast, affordable, and local.</p>
     <div class="hero-buttons">
-      <button onclick="location.href='mailto:contact@bdwebdesign.com.au'">Get a Quote</button>
-      <button onclick="location.href='tel:0490787362'">Call Now</button>
+      
     </div>
+
+    <!-- Right: Circular Buttons -->
+    <div class="social-buttons">
+        <a href="https://wa.me/0436666404" target="_blank" class="social-button whatsapp">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png" alt="WhatsApp" class="social-icon" />
+        </a>
+        <a href="https://www.tiktok.com/@bd_phone_repairs" target="_blank" class="social-button tiktok">
+          <img src="https://cdn4.iconfinder.com/data/icons/social-media-flat-7/64/Social-media_Tiktok-512.png" alt="TikTok" class="social-icon" />
+        </a>
+      </div>
+      
+      
   </section>
 
   <section class="alt-section">
