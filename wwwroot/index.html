@@ -400,6 +400,55 @@
   text-shadow: 0 0 10px #3b82f6, 0 0 20px #3b82f6;
 }
 
+.social-buttons {
+  display: flex;
+  flex-direction: row; /* align side by side */
+  gap: 2rem; /* even spacing between buttons */
+  align-items: center;
+  justify-content: center; /* center them */
+  margin-top: 2.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.social-button {
+  width: 120px;  /* bigger size */
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.social-button:hover {
+  transform: scale(1.08);
+}
+
+.social-button.whatsapp {
+  background-color: #25D366;
+}
+
+.social-button.whatsapp:hover {
+  background-color: #1ebf59;
+}
+
+.social-button.tiktok {
+  background-color: #000;
+}
+
+.social-button.tiktok:hover {
+  background-color: #222;
+}
+
+.social-icon {
+  width: 32px; /* scale up icon inside */
+  height: 32px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* keeps icons white if needed */
+}
 
 
 
@@ -466,6 +515,17 @@
         <h2>Introducing BD Phone Repairs - Phone Reapirs in the Blue Mountains</h2>
         <p>BD Phone Repairs offers high quality, affordable and local repairs on screens and batteries on iPhones. Contact us and check out our TikTok if interested.</p>
         
+            <!-- Right: Circular Buttons -->
+    <div class="social-buttons">
+      <a href="https://wa.me/0436666404" target="_blank" class="social-button whatsapp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png" alt="WhatsApp" class="social-icon" />
+      </a>
+      <a href="https://www.tiktok.com/@bd_phone_repairs" target="_blank" class="social-button tiktok">
+        <img src="https://cdn4.iconfinder.com/data/icons/social-media-flat-7/64/Social-media_Tiktok-512.png" alt="TikTok" class="social-icon" />
+      </a>
+    </div>
+
+
       </div>
     </div>
   </section>
