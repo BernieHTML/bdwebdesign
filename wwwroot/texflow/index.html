@@ -363,6 +363,72 @@
 }
 
 
+.cta-section {
+  background: rgba(30, 30, 50, 0.6);
+  padding: 80px 20px;
+  text-align: center;
+  border-radius: 30px;
+  box-shadow: 0 0 16px rgba(100, 100, 255, 0.1);
+  margin: 60px 20px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-title {
+  font-size: 2.5rem;
+  color: #cfcfff;
+  margin-bottom: 20px;
+}
+
+.cta-subtext {
+  font-size: 1.1rem;
+  color: #bbb;
+  margin-bottom: 40px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.cta-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #6a5acd, #836fff);
+  color: white;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 0 8px rgba(100, 100, 255, 0.4);
+  transition: transform 0.2s ease;
+}
+
+.cta-btn:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .cta-section {
+    padding: 60px 15px;
+  }
+
+  .cta-title {
+    font-size: 2rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+  }
+}
+
+
+
   </style>
 </head>
 <body>
@@ -467,21 +533,16 @@
   </section>
   
 
-  <!-- CTA Section -->
-  <section class="alt-section">
-    <div class="alt-content">
-      <div class="alt-text">
-        <h2>Want TexFlow on Your Website?</h2>
-        <p>TexFlow helps you capture leads, respond to inquiries, and schedule appointments 24/7. It's fast, customizable, and easy to install.</p>
-        <a href="contact.html">
-          <button>Get Started</button>
-        </a>
-      </div>
-      <div class="alt-image">
-        <img src="https://sdmntprwestus.oaiusercontent.com/files/00000000-ef80-6230-9be6-ece9742b7a63/raw?se=2025-04-12T10%3A26%3A17Z&sp=r&sv=2024-08-04&sr=b&scid=da4d1b16-3496-5e48-a55b-8961b6e72415&skoid=e872f19f-7b7f-4feb-9998-20052dec61d6&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-12T09%3A19%3A30Z&ske=2025-04-13T09%3A19%3A30Z&sks=b&skv=2024-08-04&sig=fB4Phw5kwIxsjMPRbLi5UvRqF1knoqDAAR9Rsi6CnMo%3D" alt="TexFlow screenshot">
-      </div>
+  <section class="cta-section">
+    <h2 class="cta-title">Get in Touch With Us</h2>
+    <p class="cta-subtext">We're here to help your business get online fast and affordably. Contact us now.</p>
+    <div class="cta-buttons">
+      <a href="tel:0490787362" class="cta-btn">Call Us</a>
+    
+      <a href="mailto:contact@bdwebdesign.com.au" class="cta-btn">Email Us</a>
     </div>
   </section>
+  
 
 
   <!DOCTYPE html>
