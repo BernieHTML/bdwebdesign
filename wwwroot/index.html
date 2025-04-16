@@ -450,13 +450,52 @@
   filter: brightness(0) invert(1); /* keeps icons white if needed */
 }
 
+.top-banner {
+  width: 100%;
+  background: rgba(37, 99, 235, 0.1);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  box-shadow: 0 0 10px rgba(100, 100, 255, 0.2);
+  border-bottom: 1px solid rgba(100, 100, 255, 0.1);
+  z-index: 100;
+  position: sticky;
+  top: 0;
+}
+
+.top-banner p {
+  margin: 0;
+}
+
+.top-banner a {
+  color: #93c5fd;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.top-banner a:hover {
+  color: #bfdbfe;
+  text-decoration: underline;
+}
+
+
 
 
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="top-banner">
+    <p>📧 <a href="mailto:contact@bdwebdesign.com.au">contact@bdwebdesign.com.au</a> | 📞 <a href="tel:0490787362">0490 787 362</a> Or <a href="tel:0436666404">0436 666 404</a></p>
+  </div>
   <header>
+
+
+    
+
     <div class="nav-logo">BD Web Design</div>
     <div class="hamburger" onclick="toggleMenu()">
       <div></div>
