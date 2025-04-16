@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Example TexFlow AI Chatbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #chat-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 320px;
+      border-radius: 25px;
+      box-shadow: 0 0 12px rgba(0, 123, 255, 0.25);
+      overflow: hidden;
+      background: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    #chat-header {
+      background: #007bff;
+      color: white;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      font-weight: bold;
+      cursor: pointer;
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+      box-shadow: inset 0 -1px 2px rgba(255, 255, 255, 0.2);
+    }
+
+    #chat-header .logo-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-image: url('https://via.placeholder.com/24'); /* Replace with your logo */
+      background-size: cover;
+      background-position: center;
+      margin-right: 8px;
+    }
+
+    #chat-header span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    #minimize-btn {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      line-height: 1;
+    }
+
+    #chatbox {
+      height: 300px;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #ffffff;
+    }
+
+    .message {
+      max-width: 80%;
+      padding: 10px 14px;
+      border-radius: 20px;
+      line-height: 1.4;
+      word-wrap: break-word;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .user {
+      align-self: flex-end;
+      background: #007bff;
+      color: white;
+      border-bottom-right-radius: 5px;
+    }
+
+    .bot {
+      align-self: flex-start;
+      background: #e9e9eb;
+      color: #000;
+      border-bottom-left-radius: 5px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .bot-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-image: url('https://bdwebdesign.com.au/images/texflowlogo.png'); /* Replace with actual logo */
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    #typing {
+      font-style: italic;
+      font-size: 13px;
+      color: gray;
+      margin-left: 36px;
+    }
+
+    #chat-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+      background: white;
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+    }
+
+    #userInput {
+      flex: 1;
+      border: none;
+      padding: 12px;
+      border-radius: 20px;
+      outline: none;
+      margin: 8px;
+      background: #f1f1f1;
+    }
+
+    #sendButton {
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 12px 16px;
+      margin: 8px 8px 8px 0;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+    }
+
+    #sendButton:hover {
+      background: #0056b3;
+    }
+
+    /* Minimized chat icon */
+    #chat-bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: #007bff;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,123,255,0.5);
+      z-index: 1000;
+    }
+
+    #chat-bubble img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div id="chat-container">
+    <div id="chat-header">
+      <span><div class="logo-circle"></div>TexFlow Chat</span>
+      <button id="minimize-btn">–</button>
+    </div>
+    <div id="chatbox"></div>
+    <div id="chat-input">
+      <input type="text" id="userInput" placeholder="Type a message..." />
+      <button id="sendButton">Send</button>
+    </div>
+  </div>
+
+  <!-- Minimized icon -->
+  <div id="chat-bubble">
+    <img src="https://bdwebdesign.com.au/images/texflowlogo.png" alt="TexFlow Logo" />
+  </div>
+
+  <script>
+    const sendBtn = document.getElementById("sendButton");
+    const chatBox = document.getElementById("chatbox");
+    const userInputField = document.getElementById("userInput");
+
+    sendBtn.addEventListener("click", async () => {
+      const userMessage = userInputField.value.trim();
+      if (!userMessage) return;
+
+      const userBubble = document.createElement("div");
+      userBubble.className = "message user";
+      userBubble.textContent = userMessage;
+      chatBox.appendChild(userBubble);
+
+      const typingMsg = document.createElement("div");
+      typingMsg.id = "typing";
+      typingMsg.textContent = "TexFlow is typing...";
+      chatBox.appendChild(typingMsg);
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+      userInputField.value = "";
+
+      try {
+        const response = await fetch("https://texflowexample.onrender.com/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: userMessage })
+        });
+
+        const data = await response.json();
+        typingMsg.remove();
+
+        const botBubble = document.createElement("div");
+        botBubble.className = "message bot";
+        botBubble.innerHTML = `<div class="bot-icon"></div><div>${data.reply || "Error getting response"}</div>`;
+        chatBox.appendChild(botBubble);
+      } catch (err) {
+        typingMsg.remove();
+        const errorBubble = document.createElement("div");
+        errorBubble.className = "message bot";
+        errorBubble.innerHTML = `<div class="bot-icon"></div><div>Error processing request.</div>`;
+        chatBox.appendChild(errorBubble);
+      }
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+    });
+
+    // Minimize logic
+    const chatContainer = document.getElementById("chat-container");
+    const chatBubble = document.getElementById("chat-bubble");
+    const minimizeBtn = document.getElementById("minimize-btn");
+
+    minimizeBtn.addEventListener("click", () => {
+      chatContainer.style.display = "none";
+      chatBubble.style.display = "flex";
+    });
+
+    chatBubble.addEventListener("click", () => {
+      chatContainer.style.display = "flex";
+      chatBubble.style.display = "none";
+    });
+  </script>
+</body>
+</html>
+
+<script>
+function toggleMenu() {
+  document.querySelector('.nav-links').classList.toggle('open');
+}
+</script>
+</body>
+
+
+
+
+</html>
