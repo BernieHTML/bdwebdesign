@@ -199,6 +199,18 @@
 
       chatBox.scrollTop = chatBox.scrollHeight;
     });
+
+    function postHeightToParent() {
+  const height = document.documentElement.scrollHeight;
+  window.parent.postMessage({ texflowHeight: height }, "*");
+}
+
+const resizeObserver = new ResizeObserver(postHeightToParent);
+resizeObserver.observe(document.documentElement);
+
+window.addEventListener("load", postHeightToParent);
+
+
   </script>
 </body>
 </html>
