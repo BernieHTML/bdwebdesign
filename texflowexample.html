@@ -200,7 +200,25 @@
       chatBox.scrollTop = chatBox.scrollHeight;
     });
 
-    
+    const botId = 'fancy-nails'; // Or 'plumberco' or whatever you're testing
+
+async function sendMessage(message) {
+  const response = await fetch('https://texflow-api.onrender.com/chat', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      botId,
+      message
+    })
+  });
+
+  const data = await response.json();
+  console.log('Bot says:', data.reply);
+  return data.reply;
+}
+
 
 
   </script>
