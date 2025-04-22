@@ -157,16 +157,17 @@
     const botId = 'fancy-nails'; // Or 'plumberco' or whatever you're testing
   
     async function sendMessage(message) {
-      const response = await fetch('https://texflow-backend.onrender.com/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          botId,
-          message
-        })
-      });
+        const response = await fetch('https://texflow-backend.onrender.com/chat', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    message: userMessage,
+    botId: 'fancy-nails' // 🔥 Make sure this matches your .json filename
+  })
+});
+
   
       const data = await response.json();
       console.log('Bot says:', data.reply);
