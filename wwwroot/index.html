@@ -692,7 +692,8 @@
         right: 20px;
         width: 400px;
         height: 600px;
-        background: linear-gradient(45deg, #d0e8ff, #f0f4ff, #fffaf0);
+        background: linear-gradient(45deg, #a0c4e0, #c0c8e0, #dcd6c0);
+
         background-size: 200% 200%;
         animation: texflow-gradient-move 6s ease infinite;
         border-radius: 20px;
@@ -703,21 +704,22 @@
         z-index: 1000; 
       }
 
-      #texflow-minimized {
-        display: none;
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 60px;
-        height: 60px;
-        background: white;
-        border-radius: 50%;
-        box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-        background-image: url('https://bdwebdesign.com.au/images/texflowlogo.png');
-        background-size: cover;
-        background-position: center;
-        cursor: pointer;
-      }
+     #texflow-minimized {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 15px 5px rgba(0, 123, 255, 0.5), 0 0 25px rgba(0, 123, 255, 0.4);
+    background-image: url('https://bdwebdesign.com.au/images/texflowlogo.png');
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
+
 
       @keyframes texflow-gradient-move {
         0% {
