@@ -327,7 +327,8 @@
         const data = await response.json();
         const replyText = data.reply || "Error getting response";
   
-        botBubble.innerHTML = `<div class="bot-icon"></div><div>${replyText}</div>`;
+        botBubble.innerHTML = `<div class="bot-icon"></div>${renderChatMessage(replyText)}`;
+
   
         // Add contextual suggestions based on AI trigger phrases
         const triggerWords = ["help", "hi", "hello", "start"];
