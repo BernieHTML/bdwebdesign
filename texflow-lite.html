@@ -360,13 +360,13 @@
 
   const buttons = match?.[1]?.trim().split("\n").map((line, index) => {
     if (line.includes("📞")) {
-      return `<button onclick="window.location.href='tel:0123456789'" class="contact-button">📞 Call Us</button>`;
+      return `<button onclick="window.location.href='tel:0490787362'" class="contact-button">📞 Call Us</button>`;
     }
     if (line.includes("📧")) {
-      return `<button onclick="window.location.href='mailto:info@example.com'" class="contact-button">📧 Email Us</button>`;
+      return `<button onclick="window.location.href='mailto:bdwebdesign@hotmail.com'" class="contact-button">📧 Email Us</button>`;
     }
     if (line.includes("🗓️")) {
-      return `<button onclick="window.open('https://booking-link.com')" class="contact-button">🗓️ Book Us</button>`;
+      return `<button onclick="window.open('bdwebdesign.com.au')" class="contact-button">🗓️ Book Us</button>`;
     }
     return '';
   }).join("");
