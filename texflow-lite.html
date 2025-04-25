@@ -227,83 +227,103 @@
     const sendBtn = document.getElementById("sendButton");
     const chatBox = document.getElementById("chatbox");
     const userInputField = document.getElementById("userInput");
-
+  
     minimizeBtn.addEventListener("click", () => {
       chatContainer.style.display = "none";
       minimized.style.display = "block";
     });
-
+  
     minimized.addEventListener("click", () => {
       chatContainer.style.display = "flex";
       minimized.style.display = "none";
     });
-
+  
     sendBtn.addEventListener("click", sendMessage);
     userInputField.addEventListener("keydown", (e) => {
       if (e.key === "Enter") sendMessage();
     });
-
-    function addSuggestions(suggestions) {
+  
+    function addSuggestions(suggestions, afterElement) {
       const suggestionContainer = document.createElement("div");
       suggestionContainer.className = "suggestions";
-
+      suggestionContainer.style.display = "flex";
+      suggestionContainer.style.flexWrap = "wrap";
+      suggestionContainer.style.gap = "8px";
+      suggestionContainer.style.marginTop = "8px";
+  
       suggestions.forEach(text => {
         const bubble = document.createElement("div");
         bubble.className = "suggestion";
         bubble.textContent = text;
+        bubble.style.background = "#fff";
+        bubble.style.border = "1px solid #ccc";
+        bubble.style.borderRadius = "20px";
+        bubble.style.padding = "6px 12px";
+        bubble.style.cursor = "pointer";
+        bubble.style.fontSize = "0.9rem";
+        bubble.style.boxShadow = "0 1px 3px rgba(0,0,0,0.1)";
         bubble.addEventListener("click", () => {
           userInputField.value = text;
           sendMessage();
         });
         suggestionContainer.appendChild(bubble);
       });
-
-      chatBox.appendChild(suggestionContainer);
+  
+      // Insert after bot bubble
+      afterElement.insertAdjacentElement("afterend", suggestionContainer);
       chatBox.scrollTop = chatBox.scrollHeight;
     }
-
+  
     async function sendMessage() {
       const userMessage = userInputField.value.trim();
       if (!userMessage) return;
-
+  
       const userBubble = document.createElement("div");
       userBubble.className = "message user";
       userBubble.textContent = userMessage;
       chatBox.appendChild(userBubble);
-
+  
       userInputField.value = "";
-
+  
       const botBubble = document.createElement("div");
       botBubble.className = "message bot";
       botBubble.innerHTML = `<div class="bot-icon"></div><div class="spinner"></div>`;
       chatBox.appendChild(botBubble);
-
+  
       chatBox.scrollTop = chatBox.scrollHeight;
-
+  
       try {
-        const response = await fetch("/chat", {
+        const response = await fetch("https://texflow-lite.onrender.com", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message: userMessage }),
         });
-
+  
         const data = await response.json();
-        botBubble.innerHTML = `<div class="bot-icon"></div><div>${data.reply || "Error getting response"}</div>`;
-
-        if (userMessage.toLowerCase().includes("help") || userMessage.toLowerCase().includes("hi")) {
+        const replyText = data.reply || "Error getting response";
+  
+        botBubble.innerHTML = `<div class="bot-icon"></div><div>${replyText}</div>`;
+  
+        // Add contextual suggestions based on AI trigger phrases
+        const triggerWords = ["help", "hi", "hello", "start"];
+        const isTrigger = triggerWords.some(word => userMessage.toLowerCase().includes(word));
+  
+        if (isTrigger) {
           addSuggestions([
             "Can I book a plumber?",
             "What services do you offer?",
             "How much do you charge?",
             "What are your hours?"
-          ]);
+          ], botBubble);
         }
+  
       } catch (err) {
         botBubble.innerHTML = `<div class="bot-icon"></div><div>⚠️ Error processing request.</div>`;
       }
-
+  
       chatBox.scrollTop = chatBox.scrollHeight;
     }
   </script>
+  
 </body>
 </html>
