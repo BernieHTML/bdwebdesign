@@ -296,7 +296,6 @@
         suggestionContainer.appendChild(bubble);
       });
   
-      // Insert after bot bubble
       afterElement.insertAdjacentElement("afterend", suggestionContainer);
       chatBox.scrollTop = chatBox.scrollHeight;
     }
@@ -327,12 +326,10 @@
         });
   
         const data = await response.json();
-        const replyText = data.reply || "Error getting response";
+        const replyText = data.reply || "Sorry, please try again.";
   
         botBubble.innerHTML = `<div class="bot-icon"></div>${renderChatMessage(replyText)}`;
-
   
-        // Add contextual suggestions based on AI trigger phrases
         const triggerWords = ["help", "hi", "hello", "start"];
         const isTrigger = triggerWords.some(word => userMessage.toLowerCase().includes(word));
   
@@ -351,35 +348,30 @@
   
       chatBox.scrollTop = chatBox.scrollHeight;
     }
-
-
-
-
+  
     function renderChatMessage(content) {
-  const boxRegex = /<contact-box>([\s\S]*?)<\/contact-box>/;
-
-  const match = content.match(boxRegex);
-  const beforeBox = content.replace(boxRegex, "").trim();
-
-  const buttons = match?.[1]?.trim().split("\n").map((line, index) => {
-    if (line.includes("📞")) {
-      return `<button onclick="window.location.href='tel:0490787362'" class="contact-button">📞 Call Us</button>`;
+      const boxRegex = /<contact-box>([\s\S]*?)<\/contact-box>/;
+      const match = content.match(boxRegex);
+      const beforeBox = content.replace(boxRegex, "").trim();
+  
+      const buttons = match?.[1]?.trim().split("\n").map((line) => {
+        if (line.includes("📞")) {
+          return `<button onclick="window.location.href='tel:0490787362'" class="contact-button">📞 Call Us</button>`;
+        }
+        if (line.includes("📧")) {
+          return `<button onclick="window.location.href='mailto:bdwebdesign@hotmail.com'" class="contact-button">📧 Email Us</button>`;
+        }
+        if (line.includes("🗓️")) {
+          return `<button onclick="window.open('texflow/texflow.html')" class="contact-button">🗓️ Book Us</button>`;
+        }
+        return '';
+      }).join("");
+  
+      return `
+        <div class="ai-message">${beforeBox}</div>
+        ${buttons ? `<div class="contact-box" style="background: #2c3e50; padding: 10px; margin-top: 8px; border-radius: 12px;">${buttons}</div>` : ''}
+      `;
     }
-    if (line.includes("📧")) {
-      return `<button onclick="window.location.href='mailto:bdwebdesign@hotmail.com'" class="contact-button">📧 Email Us</button>`;
-    }
-    if (line.includes("🗓️")) {
-      return `<button onclick="window.open('texflow/texflow.html')" class="contact-button">🗓️ Book Us</button>`;
-    }
-    return '';
-  }).join("");
-
-  return `
-    <div class="ai-message">${beforeBox}</div>
-    ${buttons ? `<div class="contact-box">${buttons}</div>` : ''}
-  `;
-}
-
   </script>
   
 </body>
