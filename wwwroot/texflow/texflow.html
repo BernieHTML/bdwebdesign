@@ -980,10 +980,10 @@
 
         if (isTrigger) {
           addSuggestions([
-            "Can I book a plumber?",
-            "What services do you offer?",
-            "How much do you charge?",
-            "What are your hours?"
+          "Can I Email you?",
+          "What services do you offer?",
+          "What is TexFlow?",
+          "How much does TexFlow cost?"
           ], botBubble);
         }
 
@@ -1010,7 +1010,7 @@
             return `<button onclick="window.location.href='mailto:bdwebdesign@hotmail.com'" class="contact-button">📧 Email Us</button>`;
           }
           if (line.includes("🗓️")) {
-            return `<button onclick="window.open('texflow/texflow.html')" class="contact-button">🗓️ Book Appointment</button>`;
+            return `<button onclick="window.open('texflow-lite.html')" class="contact-button">✨Try TexFlow Lite</button>`;
           }
         }).join('');
       }
