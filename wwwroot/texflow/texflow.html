@@ -666,423 +666,446 @@
 
   <div id="chatbot-root"></div>
 
-<script>
-  const root = document.getElementById('chatbot-root');
-  const shadow = root.attachShadow({ mode: 'open' });
-
-  shadow.innerHTML = `
-    <style>
-      /* Your existing styles */
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background: #f0f2f5;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-
-      #chat-container {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 100%;
-        max-width: 400px;
-        height: 100%;
-        max-height: 600px;
-        background: linear-gradient(45deg, #d0e8ff, #f0f4ff, #fffaf0);
-        background-size: 200% 200%;
-        animation: gradient-move 6s ease infinite;
-        border-radius: 20px;
-        box-shadow: 0 0 12px rgba(100, 100, 255, 0.3);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        z-index: 1000;
-      }
-
-      #minimized {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: auto;
-  max-width: 200px;
-  height: 60px;
-  background: white;
-  border-radius: 30px;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-  padding: 0 15px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 1000;
-}
-
-
-      @keyframes gradient-move {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-
-      #chat-header {
-        padding: 16px;
-        text-align: left;
-        font-weight: bold;
-        font-size: 1.5rem;
-        color: #333;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      #chat-header .minimize {
-        cursor: pointer;
-        font-size: 1.2rem;
-        background: transparent;
-        border: none;
-        color: #666;
-        padding: 0 5px;
-      }
-
-      #chatbox {
-        flex: 1;
-        overflow-y: auto;
-        padding: 16px;
-        background: transparent;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .message {
-        max-width: 80%;
-        padding: 10px 14px;
-        border-radius: 20px;
-        line-height: 1.4;
-        word-wrap: break-word;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-      }
-
-      .user {
-        align-self: flex-end;
-        background: #007bff;
-        color: white;
-        border-bottom-right-radius: 5px;
-      }
-
-      .bot {
-        align-self: flex-start;
-        background: #e9e9eb;
-        color: #000;
-        border-bottom-left-radius: 5px;
-        display: flex;
-        align-items: flex-start;
-        gap: 8px;
-      }
-
-      .bot-icon {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background-image: url('https://bdwebdesign.com.au/images/texflowlogo.png');
-        background-size: cover;
-        background-position: center;
-        flex-shrink: 0;
-        margin-top: 2px;
-      }
-
-      .spinner {
-        display: inline-block;
-        width: 28px;
-        height: 28px;
-        border: 4px solid rgba(0, 123, 255, 0.3);
-        border-radius: 50%;
-        border-top-color: #007bff;
-        animation: spin 1s ease infinite;
-      }
-
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
-
-      #chat-input {
-        display: flex;
-        padding: 10px;
-        border-top: 1px solid #ddd;
-        background: white;
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
-      }
-
-      #userInput {
-        flex: 1;
-        border: none;
-        padding: 12px;
-        border-radius: 20px;
-        outline: none;
-        background: #f1f1f1;
-        margin-right: 8px;
-      }
-
-      #sendButton {
-        background: #007bff;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
-        font-size: 1.2rem;
-      }
-
-      #sendButton:hover { background: #0056b3; }
-
-      .suggestions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 8px;
-      }
-
-      .suggestion {
-        background: #e0f0ff;
-        color: #007bff;
-        padding: 8px 12px;
-        border-radius: 20px;
-        cursor: pointer;
-        transition: background 0.3s ease;
-        font-size: 0.9rem;
-      }
-
-      .suggestion:hover {
-        background: #cce4ff;
-      }
-
-      .contact-box {
-        background-color: #2f3e4e;
-        padding: 12px;
-        margin-top: 8px;
-        border-radius: 12px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .contact-button {
-        background-color: #4b6584;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        padding: 10px;
-        font-size: 0.95rem;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-      }
-
-      .contact-button:hover {
-        background-color: #6a7d9c;
-      }
-    </style>
-
-    <div id="minimized">
-  <img src="https://bdwebdesign.com.au/images/texflowlogo.png" alt="TexFlow Logo" style="width: 30px; height: 30px; margin-right: 8px;">
-  <span style="font-weight: bold; color: #007bff;">Chat with Us</span>
-</div>
-
-    <div id="chat-container">
-      <div id="chat-header">
-        Hi, welcome to TexFlow 👋
-        <button class="minimize">−</button>
-      </div>
-      <div id="chatbox"></div>
-      <div id="chat-input">
-        <input type="text" id="userInput" placeholder="Type a message..." />
-        <button id="sendButton">↥</button>
-      </div>
-    </div>
-  `;
-
-  const chatContainer = shadow.getElementById("chat-container");
-  const minimized = shadow.getElementById("minimized");
-
-  chatContainer.style.display = "none";
-  minimized.style.display = "flex";
-
-
-  const minimizeBtn = shadow.querySelector(".minimize");
-  const sendBtn = shadow.getElementById("sendButton");
-  const chatBox = shadow.getElementById("chatbox");
-
-  // Add a welcome message and suggestions when the chat loads
-function showWelcomeMessage() {
-  const welcomeBubble = document.createElement("div");
-  welcomeBubble.className = "message bot";
-  welcomeBubble.innerHTML = `<div class="bot-icon"></div><div>Hi there! 👋 How can I help you today?</div>`;
-  chatBox.appendChild(welcomeBubble);
-
-  addSuggestions([
-    "Can I Email you?",
-    "What services do you offer?",
-    "What is TexFlow?",
-    "How much does TexFlow cost?"
-  ], welcomeBubble);
-
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-// Call it when chat container is opened
-minimized.addEventListener("click", () => {
-  chatContainer.style.display = "flex";
-  minimized.style.display = "none";
+  <script>
+    const root = document.getElementById('chatbot-root');
+    const shadow = root.attachShadow({ mode: 'open' });
   
-  // Only show welcome if no messages yet
-  if (chatBox.children.length === 0) {
-    showWelcomeMessage();
+    shadow.innerHTML = `
+      <style>
+        /* Your existing styles */
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: Arial, sans-serif;
+          background: #f0f2f5;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+  
+        #chat-container {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 100%;
+          max-width: 400px;
+          height: 100%;
+          max-height: 600px;
+          background: linear-gradient(45deg, #d0e8ff, #f0f4ff, #fffaf0);
+          background-size: 200% 200%;
+          animation: gradient-move 6s ease infinite;
+          border-radius: 20px;
+          box-shadow: 0 0 12px rgba(100, 100, 255, 0.3);
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          z-index: 1000;
+        }
+  
+        #minimized {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: auto;
+    max-width: 200px;
+    height: 60px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    padding: 0 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
   }
-});
-
-
-
-  const userInputField = shadow.getElementById("userInput");
-
-  minimizeBtn.addEventListener("click", () => {
+  
+  
+        @keyframes gradient-move {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+  
+        #chat-header {
+          padding: 16px;
+          text-align: left;
+          font-weight: bold;
+          font-size: 1.5rem;
+          color: #333;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+  
+        #chat-header .minimize {
+          cursor: pointer;
+          font-size: 1.2rem;
+          background: transparent;
+          border: none;
+          color: #666;
+          padding: 0 5px;
+        }
+  
+        #chatbox {
+          flex: 1;
+          overflow-y: auto;
+          padding: 16px;
+          background: transparent;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+  
+        .message {
+          max-width: 80%;
+          padding: 10px 14px;
+          border-radius: 20px;
+          line-height: 1.4;
+          word-wrap: break-word;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+  
+        .user {
+          align-self: flex-end;
+          background: #007bff;
+          color: white;
+          border-bottom-right-radius: 5px;
+        }
+  
+        .bot {
+          align-self: flex-start;
+          background: #e9e9eb;
+          color: #000;
+          border-bottom-left-radius: 5px;
+          display: flex;
+          align-items: flex-start;
+          gap: 8px;
+        }
+  
+        .bot-icon {
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          background-image: url('https://bdwebdesign.com.au/images/texflowlogo.png');
+          background-size: cover;
+          background-position: center;
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+  
+        .spinner {
+          display: inline-block;
+          width: 28px;
+          height: 28px;
+          border: 4px solid rgba(0, 123, 255, 0.3);
+          border-radius: 50%;
+          border-top-color: #007bff;
+          animation: spin 1s ease infinite;
+        }
+  
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+  
+        #chat-input {
+          display: flex;
+          padding: 10px;
+          border-top: 1px solid #ddd;
+          background: white;
+          border-bottom-left-radius: 20px;
+          border-bottom-right-radius: 20px;
+        }
+  
+        #userInput {
+          flex: 1;
+          border: none;
+          padding: 12px;
+          border-radius: 20px;
+          outline: none;
+          background: #f1f1f1;
+          margin-right: 8px;
+        }
+  
+        #sendButton {
+          background: #007bff;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+          font-size: 1.2rem;
+        }
+  
+        #sendButton:hover { background: #0056b3; }
+  
+        .suggestions {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          margin-top: 8px;
+        }
+  
+        .suggestion {
+          background: #e0f0ff;
+          color: #007bff;
+          padding: 8px 12px;
+          border-radius: 20px;
+          cursor: pointer;
+          transition: background 0.3s ease;
+          font-size: 0.9rem;
+        }
+  
+        .suggestion:hover {
+          background: #cce4ff;
+        }
+  
+        .contact-box {
+          background-color: #2f3e4e;
+          padding: 12px;
+          margin-top: 8px;
+          border-radius: 12px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+  
+        .contact-button {
+          background-color: #4b6584;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          padding: 10px;
+          font-size: 0.95rem;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+  
+        .contact-button:hover {
+          background-color: #6a7d9c;
+        }
+  
+        #powered-by {
+    background: #f0f0f0;
+    text-align: center;
+    padding: 6px;
+    font-size: 0.75rem;
+    color: #555;
+    border-top: 1px solid #ddd;
+  }
+  
+  #powered-by a {
+    color: #555;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  #powered-by a:hover {
+    text-decoration: underline;
+  }
+  
+      </style>
+  
+      <div id="minimized">
+    <img src="https://bdwebdesign.com.au/images/texflowlogo.png" alt="TexFlow Logo" style="width: 30px; height: 30px; margin-right: 8px;">
+    <span style="font-weight: bold; color: #007bff;">Chat with Us</span>
+  </div>
+  
+      <div id="chat-container">
+        <div id="chat-header">
+          Hi, welcome to TexFlow 👋
+          <button class="minimize">−</button>
+        </div>
+        <div id="chatbox"></div>
+        <div id="chat-input">
+          <input type="text" id="userInput" placeholder="Type a message..." />
+          <button id="sendButton">↥</button>
+        </div>
+  
+        <div id="powered-by">
+      <a href="https://bdwebdesign.com.au/texflow/texflow.html" target="_blank">Powered by TexFlow</a>
+    </div>
+  
+      </div>
+    `;
+  
+    const chatContainer = shadow.getElementById("chat-container");
+    const minimized = shadow.getElementById("minimized");
+  
     chatContainer.style.display = "none";
     minimized.style.display = "flex";
-
-  });
-
+  
+  
+    const minimizeBtn = shadow.querySelector(".minimize");
+    const sendBtn = shadow.getElementById("sendButton");
+    const chatBox = shadow.getElementById("chatbox");
+  
+    // Add a welcome message and suggestions when the chat loads
+  function showWelcomeMessage() {
+    const welcomeBubble = document.createElement("div");
+    welcomeBubble.className = "message bot";
+    welcomeBubble.innerHTML = `<div class="bot-icon"></div><div>Hi there! 👋 How can I help you today?</div>`;
+    chatBox.appendChild(welcomeBubble);
+  
+    addSuggestions([
+      "Can I Email you?",
+      "What services do you offer?",
+      "What is TexFlow?",
+      "How much does TexFlow cost?"
+    ], welcomeBubble);
+  
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+  
+  // Call it when chat container is opened
   minimized.addEventListener("click", () => {
     chatContainer.style.display = "flex";
     minimized.style.display = "none";
-  });
-
-  sendBtn.addEventListener("click", sendMessage);
-  userInputField.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") sendMessage();
-  });
-
-  function addSuggestions(suggestions, afterElement) {
-    const suggestionContainer = document.createElement("div");
-    suggestionContainer.className = "suggestions";
-    suggestionContainer.style.display = "flex";
-    suggestionContainer.style.flexWrap = "wrap";
-    suggestionContainer.style.gap = "8px";
-    suggestionContainer.style.marginTop = "8px";
-
-    suggestions.forEach(text => {
-      const bubble = document.createElement("div");
-      bubble.className = "suggestion";
-      bubble.textContent = text;
-      bubble.addEventListener("click", () => {
-        userInputField.value = text;
-        sendMessage();
-      });
-      suggestionContainer.appendChild(bubble);
-    });
-
-    afterElement.insertAdjacentElement("afterend", suggestionContainer);
-    chatBox.scrollTop = chatBox.scrollHeight;
-  }
-
-  async function sendMessage() {
-    const userMessage = userInputField.value.trim();
-    if (!userMessage) return;
-
-    const userBubble = document.createElement("div");
-    userBubble.className = "message user";
-    userBubble.textContent = userMessage;
-    chatBox.appendChild(userBubble);
-
-    userInputField.value = "";
-
-    const loadingBubble = document.createElement("div");
-    loadingBubble.className = "message bot";
-    loadingBubble.innerHTML = `<div class="bot-icon"></div><div class="spinner"></div>`;
-    chatBox.appendChild(loadingBubble);
-
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-    try {
-      const response = await fetch("https://free-hosting-texflow.onrender.com/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMessage }),
-      });
-
-      const data = await response.json();
-      const replyText = data.reply || "Sorry, please try again.";
-
-      loadingBubble.remove();
-
-      const { textPart, buttonsHTML } = renderChatMessage(replyText);
-
-      const botBubble = document.createElement("div");
-      botBubble.className = "message bot";
-      botBubble.innerHTML = `<div class="bot-icon"></div><div>${textPart}</div>`;
-      chatBox.appendChild(botBubble);
-
-      if (buttonsHTML) {
-        const buttonBox = document.createElement("div");
-        buttonBox.className = "contact-box";
-        buttonBox.innerHTML = buttonsHTML;
-        chatBox.appendChild(buttonBox);
-      }
-
-      const triggerWords = ["help", "hi", "hello", "start"];
-      const isTrigger = triggerWords.some(word => userMessage.toLowerCase().includes(word));
-
-      if (isTrigger) {
-        addSuggestions([
-          "Can I Email you?",
-          "What services do you offer?",
-          "What is TexFlow?",
-          "How much does TexFlow cost?"
-        ], botBubble);
-      }
-
-    } catch (err) {
-      loadingBubble.innerHTML = `<div class="bot-icon"></div><div>⚠️ Error processing request.</div>`;
+    
+    // Only show welcome if no messages yet
+    if (chatBox.children.length === 0) {
+      showWelcomeMessage();
     }
-
-    chatBox.scrollTop = chatBox.scrollHeight;
-  }
-
-  function renderChatMessage(content) {
-    const boxRegex = /<contact-box>([\s\S]*?)<\/contact-box>/;
-    const match = content.match(boxRegex);
-
-    const textPart = content.replace(boxRegex, "").trim();
-
-    let buttonsHTML = "";
-    if (match?.[1]) {
-      buttonsHTML = match[1].trim().split("\n").map(line => {
-        if (line.includes("📞")) {
-          return `<button onclick="window.location.href='tel:0490787362'" class="contact-button">📞 Call Us</button>`;
-        }
-        if (line.includes("📧")) {
-          return `<button onclick="window.location.href='mailto:bdwebdesign@hotmail.com'" class="contact-button">📧 Email Us</button>`;
-        }
-        if (line.includes("✨")) {
-          return `<button onclick="window.open('texflow/texflow.html')" class="contact-button">✨ Check out TexFlow</button>`;
-        }
-      }).join('');
-    }
-
-    return { textPart, buttonsHTML };
-  }
-</script>
+  });
   
-
+  
+  
+    const userInputField = shadow.getElementById("userInput");
+  
+    minimizeBtn.addEventListener("click", () => {
+      chatContainer.style.display = "none";
+      minimized.style.display = "flex";
+  
+    });
+  
+    minimized.addEventListener("click", () => {
+      chatContainer.style.display = "flex";
+      minimized.style.display = "none";
+    });
+  
+    sendBtn.addEventListener("click", sendMessage);
+    userInputField.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") sendMessage();
+    });
+  
+    function addSuggestions(suggestions, afterElement) {
+      const suggestionContainer = document.createElement("div");
+      suggestionContainer.className = "suggestions";
+      suggestionContainer.style.display = "flex";
+      suggestionContainer.style.flexWrap = "wrap";
+      suggestionContainer.style.gap = "8px";
+      suggestionContainer.style.marginTop = "8px";
+  
+      suggestions.forEach(text => {
+        const bubble = document.createElement("div");
+        bubble.className = "suggestion";
+        bubble.textContent = text;
+        bubble.addEventListener("click", () => {
+          userInputField.value = text;
+          sendMessage();
+        });
+        suggestionContainer.appendChild(bubble);
+      });
+  
+      afterElement.insertAdjacentElement("afterend", suggestionContainer);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  
+    async function sendMessage() {
+      const userMessage = userInputField.value.trim();
+      if (!userMessage) return;
+  
+      const userBubble = document.createElement("div");
+      userBubble.className = "message user";
+      userBubble.textContent = userMessage;
+      chatBox.appendChild(userBubble);
+  
+      userInputField.value = "";
+  
+      const loadingBubble = document.createElement("div");
+      loadingBubble.className = "message bot";
+      loadingBubble.innerHTML = `<div class="bot-icon"></div><div class="spinner"></div>`;
+      chatBox.appendChild(loadingBubble);
+  
+      chatBox.scrollTop = chatBox.scrollHeight;
+  
+      try {
+        const response = await fetch("https://free-hosting-texflow.onrender.com/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: userMessage }),
+        });
+  
+        const data = await response.json();
+        const replyText = data.reply || "Sorry, please try again.";
+  
+        loadingBubble.remove();
+  
+        const { textPart, buttonsHTML } = renderChatMessage(replyText);
+  
+        const botBubble = document.createElement("div");
+        botBubble.className = "message bot";
+        botBubble.innerHTML = `<div class="bot-icon"></div><div>${textPart}</div>`;
+        chatBox.appendChild(botBubble);
+  
+        if (buttonsHTML) {
+          const buttonBox = document.createElement("div");
+          buttonBox.className = "contact-box";
+          buttonBox.innerHTML = buttonsHTML;
+          chatBox.appendChild(buttonBox);
+        }
+  
+        const triggerWords = ["help", "hi", "hello", "start"];
+        const isTrigger = triggerWords.some(word => userMessage.toLowerCase().includes(word));
+  
+        if (isTrigger) {
+          addSuggestions([
+            "Can I Email you?",
+            "What services do you offer?",
+            "What is TexFlow?",
+            "How much does TexFlow cost?"
+          ], botBubble);
+        }
+  
+      } catch (err) {
+        loadingBubble.innerHTML = `<div class="bot-icon"></div><div>⚠️ Error processing request.</div>`;
+      }
+  
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  
+    function renderChatMessage(content) {
+      const boxRegex = /<contact-box>([\s\S]*?)<\/contact-box>/;
+      const match = content.match(boxRegex);
+  
+      const textPart = content.replace(boxRegex, "").trim();
+  
+      let buttonsHTML = "";
+      if (match?.[1]) {
+        buttonsHTML = match[1].trim().split("\n").map(line => {
+          if (line.includes("📞")) {
+            return `<button onclick="window.location.href='tel:0490787362'" class="contact-button">📞 Call Us</button>`;
+          }
+          if (line.includes("📧")) {
+            return `<button onclick="window.location.href='mailto:bdwebdesign@hotmail.com'" class="contact-button">📧 Email Us</button>`;
+          }
+          if (line.includes("✨")) {
+            return `<button onclick="window.open('texflow/texflow.html')" class="contact-button">✨ Check out TexFlow</button>`;
+          }
+        }).join('');
+      }
+  
+      return { textPart, buttonsHTML };
+    }
+  </script>
 
   <script>
     function toggleMenu() {
