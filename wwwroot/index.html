@@ -902,6 +902,37 @@
   const minimizeBtn = shadow.querySelector(".minimize");
   const sendBtn = shadow.getElementById("sendButton");
   const chatBox = shadow.getElementById("chatbox");
+
+  // Add a welcome message and suggestions when the chat loads
+function showWelcomeMessage() {
+  const welcomeBubble = document.createElement("div");
+  welcomeBubble.className = "message bot";
+  welcomeBubble.innerHTML = `<div class="bot-icon"></div><div>Hi there! 👋 How can I help you today?</div>`;
+  chatBox.appendChild(welcomeBubble);
+
+  addSuggestions([
+    "Can I Email you?",
+    "What services do you offer?",
+    "What is TexFlow?",
+    "How much does TexFlow cost?"
+  ], welcomeBubble);
+
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// Call it when chat container is opened
+minimized.addEventListener("click", () => {
+  chatContainer.style.display = "flex";
+  minimized.style.display = "none";
+  
+  // Only show welcome if no messages yet
+  if (chatBox.children.length === 0) {
+    showWelcomeMessage();
+  }
+});
+
+
+
   const userInputField = shadow.getElementById("userInput");
 
   minimizeBtn.addEventListener("click", () => {
