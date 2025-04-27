@@ -325,6 +325,25 @@
 
       return { textPart, buttonsHTML };
     }
+
+
+    // Preprogrammed bot message and suggestions on load
+window.addEventListener("load", () => {
+  const welcomeBubble = document.createElement("div");
+  welcomeBubble.className = "message bot";
+  welcomeBubble.innerHTML = `<div class="bot-icon"></div><div>Hi! 👋 How can we help you today?</div>`;
+  chatBox.appendChild(welcomeBubble);
+
+  addSuggestions([
+    "Can I book a plumber?",
+    "What services do you offer?",
+    "How much do you charge?",
+    "What are your hours?"
+  ], welcomeBubble);
+
+  chatBox.scrollTop = chatBox.scrollHeight;
+});
+
   </script>
 </body>
 </html>
