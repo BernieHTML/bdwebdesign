@@ -684,20 +684,24 @@
       }
 
       #minimized {
-        display: none;
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 60px;
-        height: 60px;
-        background: white;
-        border-radius: 50%;
-        box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-        background-image: url('https://bdwebdesign.com.au/images/texflowlogo.png');
-        background-size: cover;
-        background-position: center;
-        cursor: pointer;
-      }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: auto;
+  max-width: 200px;
+  height: 60px;
+  background: white;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+  padding: 0 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
 
       @keyframes gradient-move {
         0% { background-position: 0% 50%; }
@@ -869,7 +873,11 @@
       }
     </style>
 
-    <div id="minimized"></div>
+    <div id="minimized">
+  <img src="https://bdwebdesign.com.au/images/texflowlogo.png" alt="TexFlow Logo" style="width: 30px; height: 30px; margin-right: 8px;">
+  <span style="font-weight: bold; color: #007bff;">Chat with Us</span>
+</div>
+
     <div id="chat-container">
       <div id="chat-header">
         Hi, welcome to TexFlow 👋
@@ -885,6 +893,11 @@
 
   const chatContainer = shadow.getElementById("chat-container");
   const minimized = shadow.getElementById("minimized");
+
+  chatContainer.style.display = "none";
+  minimized.style.display = "flex";
+
+
   const minimizeBtn = shadow.querySelector(".minimize");
   const sendBtn = shadow.getElementById("sendButton");
   const chatBox = shadow.getElementById("chatbox");
