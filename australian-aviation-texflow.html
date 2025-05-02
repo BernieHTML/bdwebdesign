@@ -363,12 +363,30 @@
       chatBox.scrollTop = chatBox.scrollHeight;
     }
   
-    function renderChatMessage(reply) {
-      const match = reply.match(/(.*?)(<contact-box>.*<\/contact-box>)?/s);
-      return {
-        textPart: match?.[1] || reply,
-        buttonsHTML: match?.[2] || ""
-      };
+    
+
+    function renderChatMessage(content) {
+    const boxRegex = /<contact-box>([\s\S]*?)<\/contact-box>/;
+    const match = content.match(boxRegex);
+
+    const textPart = content.replace(boxRegex, "").trim();
+
+    let buttonsHTML = "";
+    if (match?.[1]) {
+      buttonsHTML = match[1].trim().split("\n").map(line => {
+        if (line.includes("📞")) {
+          return `<button onclick="window.location.href='tel:0490787362'" class="contact-button">📞 Call Us</button>`;
+        }
+        if (line.includes("📧")) {
+          return `<button onclick="window.location.href='mailto:bdwebdesign@hotmail.com'" class="contact-button">📧 Email Us</button>`;
+        }
+        if (line.includes("✨")) {
+          return `<button onclick="window.open('texflow.html')" class="contact-button">✨ Check out TexFlow</button>`;
+        }
+      }).join('');
     }
+
+    return { textPart, buttonsHTML };
+  }
   </script>
   
