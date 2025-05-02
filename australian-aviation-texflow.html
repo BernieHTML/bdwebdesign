@@ -375,13 +375,13 @@
     if (match?.[1]) {
       buttonsHTML = match[1].trim().split("\n").map(line => {
         if (line.includes("📞")) {
-          return `<button onclick="window.location.href='tel:0490787362'" class="contact-button">📞 Call Us</button>`;
+          return `<button onclick="window.location.href='tel:(02) 9922 3300'" class="contact-button">📞 Call Us</button>`;
         }
         if (line.includes("📧")) {
-          return `<button onclick="window.location.href='mailto:bdwebdesign@hotmail.com'" class="contact-button">📧 Email Us</button>`;
+          return `<button onclick="window.location.href='mailto:media@australianaviation.com.au'" class="contact-button">📧 Email Us</button>`;
         }
         if (line.includes("✨")) {
-          return `<button onclick="window.open('texflow.html')" class="contact-button">✨ Check out TexFlow</button>`;
+          return `<button onclick="window.open('texflow.html')" class="contact-button">✨ Check out the PODCAST</button>`;
         }
       }).join('');
     }
