@@ -287,10 +287,10 @@
         const isTrigger = triggerWords.some(word => userMessage.toLowerCase().includes(word));
         if (isTrigger) {
           addSuggestions([
-            "Can I book a plumber?",
-            "What services do you offer?",
-            "How much do you charge?",
-            "What are your hours?"
+            "How do I get in touch?",
+            "Where can I listen to the podcast?",
+            "What does Australian Aviation do??",
+            "Who is the better podcast host?"
           ], botBubble);
         }
 
@@ -317,7 +317,7 @@
             return `<button onclick="window.location.href='mailto:bdwebdesign@hotmail.com'" class="contact-button">📧 Email Us</button>`;
           }
           if (line.includes("🗓️")) {
-            return `<button onclick="window.open('texflow/texflow.html')" class="contact-button">🗓️ Book Online</button>`;
+            return `<button onclick="window.open('texflow/texflow.html')" class="contact-button">✨ Check out the PODCAST</button>`;
           }
           return "";
         }).join("");
