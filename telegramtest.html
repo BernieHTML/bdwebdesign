@@ -389,15 +389,22 @@
     }
   
     function appendLiveMessage(sender, message) {
-      const msg = document.createElement("div");
-      msg.className = "message";
-      if (sender === "You") msg.classList.add("user");
-      else if (sender === "Telegram") msg.classList.add("telegram");
-      else msg.classList.add("system");
-      msg.textContent = `${sender}: ${message}`;
-      liveChatBox.appendChild(msg);
-      liveChatBox.scrollTop = liveChatBox.scrollHeight;
-    }
+  const msg = document.createElement("div");
+  msg.className = "message";
+  
+  if (sender === "You") {
+    msg.classList.add("user");
+  } else if (sender === "Telegram") {
+    msg.classList.add("telegram");
+  } else {
+    msg.classList.add("bot");
+  }
+
+  msg.textContent = `${sender}: ${message}`;
+  liveChatBox.appendChild(msg);
+  liveChatBox.scrollTop = liveChatBox.scrollHeight;
+}
+
   
     setInterval(async () => {
       if (!isLiveChat) return;
