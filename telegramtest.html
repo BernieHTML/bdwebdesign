@@ -286,6 +286,25 @@
   background: #f1f1f1;
 }
 
+#live-banner {
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 8px;
+  color: white;
+  background: #9147ff;
+  box-shadow: 0 0 12px rgba(145, 71, 255, 0.8);
+  animation: pulseGlow 2s infinite;
+  border-bottom: 1px solid #ccc;
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 8px rgba(145, 71, 255, 0.6); }
+  50% { box-shadow: 0 0 20px rgba(145, 71, 255, 1); }
+  100% { box-shadow: 0 0 8px rgba(145, 71, 255, 0.6); }
+}
+
+
 
 
   </style>
@@ -306,6 +325,8 @@
     </div>
     <button class="minimize">−</button>
   </div>
+  <div id="live-banner" style="display: none;">💬 In Live Chat Mode</div>
+
 
   <div id="chatbox"></div> <!-- AI chat area -->
   <div id="live-chatbox" style="display: none; flex: 1; overflow-y: auto; padding: 16px; background: #fffaf0; flex-direction: column; gap: 12px; margin-bottom: 60px;"></div> <!-- Live Chat -->
@@ -360,11 +381,19 @@
     });
   
     toggleButton.addEventListener("click", () => {
-      isLiveChat = !isLiveChat;
-      chatBox.style.display = isLiveChat ? "none" : "flex";
-      liveChatBox.style.display = isLiveChat ? "flex" : "none";
-      toggleButton.textContent = isLiveChat ? "Back to AI" : "Live Chat";
-    });
+  isLiveChat = !isLiveChat;
+
+  chatBox.style.display = isLiveChat ? "none" : "flex";
+  liveChatBox.style.display = isLiveChat ? "flex" : "none";
+
+  liveChatBox.style.background = isLiveChat ? "#fffaf0" : "transparent";
+  chatBox.style.background = isLiveChat ? "transparent" : "transparent";
+
+  toggleButton.textContent = isLiveChat ? "💬 Back to AI" : "💬 Live Chat";
+
+  document.getElementById("live-banner").style.display = isLiveChat ? "block" : "none";
+});
+
   
     function addSuggestions(suggestions, afterElement) {
       const suggestionContainer = document.createElement("div");
