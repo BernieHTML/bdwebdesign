@@ -305,17 +305,24 @@
 }
 
 @media (max-width: 600px) {
-  #chat-container {
-    bottom: 10px;
-    right: 10px;
-    left: 10px;
-    top: auto;
-    width: auto;
-    height: 75vh;
-    max-height: 75vh;
-    border-radius: 16px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
-  }
+    #chat-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 100%;
+  max-width: 400px;
+  height: 600px;
+  background: linear-gradient(45deg, #d0e8ff, #f0f4ff, #fffaf0);
+  background-size: 200% 200%;
+  animation: gradient-move 6s ease infinite;
+  border-radius: 20px;
+  box-shadow: 0 0 12px rgba(100, 100, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1000;
+}
+
 
   #chatbox,
   #live-chatbox {
