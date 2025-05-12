@@ -420,6 +420,8 @@
     const liveChatBox = document.getElementById("live-chatbox");
     const userInputField = document.getElementById("userInput");
     const toggleButton = document.getElementById("toggleChatMode");
+
+    const userId = "User-" + Math.random().toString(36).substr(2, 5).toUpperCase();
   
     let isLiveChat = false;
   
@@ -498,17 +500,19 @@
     const RENDER_BACKEND_URL = "https://bd-telegram.onrender.com";
   
     async function sendTelegramMessage(message) {
-      appendLiveMessage("You", message);
-      try {
-        await fetch(`${RENDER_BACKEND_URL}/send-to-telegram`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message }),
-        });
-      } catch (err) {
-        appendLiveMessage("System", "❌ Failed to send message.");
-      }
-    }
+  const taggedMessage = `[${userId}] ${message}`;
+  appendLiveMessage("You", message);
+  try {
+    await fetch(`${RENDER_BACKEND_URL}/send-to-telegram`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: taggedMessage }),
+    });
+  } catch (err) {
+    appendLiveMessage("System", "❌ Failed to send message.");
+  }
+}
+
   
     function appendLiveMessage(sender, message) {
   const msg = document.createElement("div");
