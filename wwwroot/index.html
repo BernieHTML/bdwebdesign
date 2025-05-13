@@ -645,13 +645,13 @@
  
   
 <div id="chatbot-root"></div>
-
 <script>
 (async () => {
   const root = document.getElementById("chatbot-root");
   const shadow = root.attachShadow({ mode: "open" });
 
-  const style = `<style>
+  // Load stylesheet inline from the original HTML file
+  const cssText = `<style>
   body {
       margin: 0;
       padding: 0;
@@ -1022,8 +1022,12 @@
 
   </style>`;
 
-  const html = `
-    ${style}
+  // Create style and container
+  const style = document.createElement("style");
+  style.textContent = cssText;
+
+  const container = document.createElement("div");
+  container.innerHTML = `
     <div id="minimized">
       <img src="https://bdwebdesign.com.au/images/texflowlogo.png" alt="TexFlow Logo" style="width: 30px; height: 30px; margin-right: 8px;">
       <span style="font-weight: bold; color: #007bff;">Chat with Us</span>
@@ -1041,7 +1045,7 @@
       <div id="live-chatbox" style="display: none; flex: 1; overflow-y: auto; padding: 16px; background: #fffaf0; flex-direction: column; gap: 12px; margin-bottom: 60px;"></div>
       <div id="chat-input">
         <input type="text" id="userInput" placeholder="Type a message..." />
-        <button id="sendButton">↥</button>
+        <button id="sendButton">↕</button>
       </div>
       <div id="powered-by">
         <a href="https://bdwebdesign.com.au/texflow/texflow.html" target="_blank">Powered by TexFlow</a>
@@ -1049,18 +1053,22 @@
     </div>
   `;
 
-  shadow.innerHTML = html;
+  shadow.appendChild(style);
+  shadow.appendChild(container);
 
-  const chatContainer = shadow.getElementById("chat-container");
-  const minimized = shadow.getElementById("minimized");
-  const minimizeBtn = shadow.querySelector(".minimize");
-  const sendBtn = shadow.getElementById("sendButton");
-  const chatBox = shadow.getElementById("chatbox");
-  const liveChatBox = shadow.getElementById("live-chatbox");
-  const userInputField = shadow.getElementById("userInput");
-  const toggleButton = shadow.getElementById("toggleChatMode");
-  const liveBanner = shadow.getElementById("live-banner");
-
+  const $ = (id) => shadow.getElementById(id);
+  const chatContainer = $("chat-container");
+  const minimized = $("minimized");
+  const minimizeBtn = container.querySelector(".minimize");
+  const sendBtn = $("sendButton");
+  const chatBox = $("chatbox");
+  const liveChatBox = $("live-chatbox");
+  const userInputField = $("userInput");
+  const toggleButton = $("toggleChatMode");
+  const liveBanner = $("live-banner");
+  const sessionId = sessionStorage.getItem("sessionId") || crypto.randomUUID();
+  sessionStorage.setItem("sessionId", sessionId);
+  const userId = "User-" + Math.random().toString(36).substr(2, 5).toUpperCase();
   let isLiveChat = false;
 
   function showWelcomeMessage() {
@@ -1126,12 +1134,13 @@
   }
 
   async function sendTelegramMessage(message) {
+    const taggedMessage = `[${userId}] ${message}`;
     appendLiveMessage("You", message);
     try {
       await fetch("https://bd-telegram.onrender.com/send-to-telegram", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({ message: taggedMessage, sessionId }),
       });
     } catch {
       appendLiveMessage("System", "❌ Failed to send message.");
@@ -1216,6 +1225,7 @@
   }
 })();
 </script>
+
 
 
 
