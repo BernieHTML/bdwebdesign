@@ -421,6 +421,10 @@
     const userInputField = document.getElementById("userInput");
     const toggleButton = document.getElementById("toggleChatMode");
 
+    const sessionId = sessionStorage.getItem("sessionId") || crypto.randomUUID();
+sessionStorage.setItem("sessionId", sessionId);
+
+
     const userId = "User-" + Math.random().toString(36).substr(2, 5).toUpperCase();
   
     let isLiveChat = false;
@@ -504,10 +508,14 @@
   appendLiveMessage("You", message);
   try {
     await fetch(`${RENDER_BACKEND_URL}/send-to-telegram`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: taggedMessage }),
-    });
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    message: taggedMessage,
+    sessionId: sessionId, // ✅ include this
+  }),
+});
+
   } catch (err) {
     appendLiveMessage("System", "❌ Failed to send message.");
   }
