@@ -425,6 +425,7 @@
 sessionStorage.setItem("sessionId", sessionId);
 
 
+
     const userId = "User-" + Math.random().toString(36).substr(2, 5).toUpperCase();
   
     let isLiveChat = false;
@@ -541,18 +542,21 @@ sessionStorage.setItem("sessionId", sessionId);
 }
 
   
-    setInterval(async () => {
-      if (!isLiveChat) return;
-      try {
-        const res = await fetch(`${RENDER_BACKEND_URL}/get-telegram-replies`);
-        const data = await res.json();
-        if (data.messages && data.messages.length > 0) {
-          data.messages.forEach((msg) => appendLiveMessage("Telegram", msg.text));
-        }
-      } catch (err) {
-        console.error("Failed to fetch Telegram replies", err);
-      }
-    }, 3000);
+setInterval(async () => {
+  if (!isLiveChat) return;
+  try {
+    const res = await fetch(`${RENDER_BACKEND_URL}/get-telegram-replies`);
+    const data = await res.json();
+    if (data.messages && data.messages.length > 0) {
+      data.messages
+        .filter(msg => msg.sessionId === sessionId) // ✅ Only show replies from the same session
+        .forEach((msg) => appendLiveMessage("Telegram", msg.text));
+    }
+  } catch (err) {
+    console.error("Failed to fetch Telegram replies", err);
+  }
+}, 3000);
+
   
     // AI integration
     async function sendAIMessage(userMessage) {
