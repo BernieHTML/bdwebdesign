@@ -1159,17 +1159,20 @@
   }
 
   setInterval(async () => {
-    if (!isLiveChat) return;
-    try {
-      const res = await fetch("https://bd-telegram.onrender.com/get-telegram-replies");
-      const data = await res.json();
-      if (data.messages?.length > 0) {
-        data.messages.forEach((msg) => appendLiveMessage("Telegram", msg.text));
-      }
-    } catch (err) {
-      console.error("Failed to fetch Telegram replies", err);
+  if (!isLiveChat) return;
+  try {
+    const res = await fetch(`${RENDER_BACKEND_URL}/get-telegram-replies`);
+    const data = await res.json();
+    if (data.messages && data.messages.length > 0) {
+      data.messages
+        .filter(msg => msg.sessionId === sessionId) // ✅ Only show replies from the same session
+        .forEach((msg) => appendLiveMessage("Telegram", msg.text));
     }
-  }, 3000);
+  } catch (err) {
+    console.error("Failed to fetch Telegram replies", err);
+  }
+}, 3000);
+
 
   async function sendAIMessage(userMessage) {
     const userBubble = document.createElement("div");
