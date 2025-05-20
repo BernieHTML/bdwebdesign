@@ -538,6 +538,23 @@
 }
 
 
+.button-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff; /* adjust to match your button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+.button-link:hover {
+  background-color: #0056b3;
+}
+
+
 
 
   </style>
@@ -603,17 +620,7 @@
     <div class="pricing-grid">
       
       <!-- Active Plan -->
-      <div class="pricing-card active">
-        <h3></h3>
-        <p class="price"></p>
-        <ul>
-          <li>✅ </li>
-          <li>✅ </li>
-          <li>✅ </li>
-          <li>✅ </li>
-        </ul>
-        <button>Get Started</button>
-      </div>
+      
   
       
       <div class="pricing-card active">
@@ -628,7 +635,8 @@
           <li>✅ Embedded links to booking/payment system</li>
           <li>✅ iFrame provided for website embed</li>
         </ul>
-        <button>Get Started</button>
+        <a href="https://texflow-backend.onrender.com/onboardingwizard.html" class="button-link">Get Started</a>
+
       </div>
       
       <!-- Coming Soon Plans -->
