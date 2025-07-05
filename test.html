@@ -1,18 +1,108 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>TexFlow Bot Embed Test</title>
-  </head>
-  <body>
-    <h1>Testing TexFlow Chatbot for Mikes Plumbing</h1>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Article Ranker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      margin-bottom: 1rem;
+    }
+    button {
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+    pre {
+      background: #f0f0f0;
+      padding: 1rem;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
 
-    <!-- Set botId -->
-    <script>
-      window.TEXFLOW_BOT_ID = "mikes-plumbing";
-    </script>
+  <h1>🧠 AI Article Ranker</h1>
 
-    <!-- Load the iframe embed script -->
-    <script src="https://texflow-backend.onrender.com/iframe.js"></script>
-  </body>
+  <label for="preamble">Your Preamble (who you are):</label>
+  <textarea id="preamble" placeholder="e.g., I'm John, a 27-year-old teacher interested in AI..."></textarea>
+
+  <label for="titles">Article Titles (one per line):</label>
+  <textarea id="titles" placeholder="e.g., How AI is Changing Education"></textarea>
+
+  <button onclick="rankTitles()">🔍 Rank Titles</button>
+
+  <h2>📊 Ranked Results:</h2>
+  <pre id="result">Waiting for input...</pre>
+
+  <script>
+    const API_KEY = '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'; // <-- Replace with your actual key
+    const MODEL = 'deepseek/deepseek-chat-v3-0324:free'; // You can change to another model if you like
+
+    async function rankTitles() {
+      const preamble = document.getElementById('preamble').value.trim();
+      const titlesInput = document.getElementById('titles').value.trim();
+      const resultBox = document.getElementById('result');
+
+      if (!preamble || !titlesInput) {
+        resultBox.textContent = '⚠️ Please fill in both the preamble and titles.';
+        return;
+      }
+
+      const titles = titlesInput.split('\n').map(t => t.trim()).filter(Boolean);
+      const prompt = `
+You are an AI that ranks article titles for a user based on their personal context.
+
+User preamble:
+"${preamble}"
+
+Here are some article titles:
+${titles.map((title, i) => `${i + 1}. ${title}`).join('\n')}
+
+Please rank these titles from most to least relevant for this user. Explain briefly why each title is ranked the way it is.
+Return your answer in this format:
+
+Ranked Titles:
+1. [Title] - [Explanation]
+2. [Title] - [Explanation]
+...`;
+
+      resultBox.textContent = '⏳ Thinking...';
+
+      try {
+        const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + API_KEY,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            model: MODEL,
+            messages: [{ role: 'user', content: prompt }]
+          })
+        });
+
+        const data = await res.json();
+
+        if (data.choices && data.choices[0]) {
+          resultBox.textContent = data.choices[0].message.content;
+        } else {
+          resultBox.textContent = '⚠️ Unexpected response:\n' + JSON.stringify(data, null, 2);
+        }
+      } catch (err) {
+        resultBox.textContent = '❌ Error:\n' + err.message;
+      }
+    }
+  </script>
+</body>
 </html>
+
+
 
