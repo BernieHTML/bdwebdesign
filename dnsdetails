@@ -1,0 +1,22 @@
+Select all	Type	Host name	Value	Service	Actions
+Select	CNAME	www	berniehtml.github.io	-	
+Select	A	chats	158.178.143.122	-	
+Select	A	@	185.199.111.153	-	
+Select	A	@	185.199.110.153	-	
+Select	A	@	185.199.109.153	-	
+Select	A	@	185.199.108.153	-	
+Select	CNAME	autodiscover.chats	adsredir.ionos.info	Mail	
+Select	CNAME	s42582890._domainkey.chats	s42582890.dkim.ionos.com	Mail	
+Select	CNAME	s2-ionos._domainkey.chats	s2.dkim.ionos.com	Mail	
+Select	CNAME	s1-ionos._domainkey.chats	s1.dkim.ionos.com	Mail	
+Select	TXT	chats	"v=spf1 include:_spf-us.ionos.com ~all"	Mail	
+Select	MX	chats	mx01.ionos.com	Mail	
+Select	MX	chats	mx00.ionos.com	Mail	
+Select	CNAME	autodiscover	adsredir.ionos.info	Mail	
+Select	CNAME	s42582890._domainkey	s42582890.dkim.ionos.com	Mail	
+Select	CNAME	s2-ionos._domainkey	s2.dkim.ionos.com	Mail	
+Select	CNAME	s1-ionos._domainkey	s1.dkim.ionos.com	Mail	
+Select	TXT	@	"v=spf1 include:_spf-us.ionos.com ~all"	Mail	
+Select	MX	@	mx01.ionos.com	Mail	
+Select	MX	@	mx00.ionos.com	Mail	
+Select	CNAME	_domainconnect	_domainconnect.ionos.com	Domain Connect	
